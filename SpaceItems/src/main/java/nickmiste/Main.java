@@ -15,42 +15,43 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class Main extends JavaPlugin implements Listener {
 
 	@Override
-	public void onEnable() {
-
+	public void onEnable() 
+	{
 		Bukkit.getPluginManager().registerEvents(this, this);
 	}
 
 	@Override
-	public void onDisable() {
-
+	public void onDisable() 
+	{
 		// This is a little edit by george for git purposes
 		// Remove later plz
+		// Nickmiste saw this commit
 	}
 
 	@EventHandler
-	public void onItemSpawn(ItemSpawnEvent event) {
-
+	public void onItemSpawn(ItemSpawnEvent event)
+	{
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new FloatItemTask(event.getEntity()), 5, 0);
 	}
 
 	@EventHandler
-	public void onItemPickup(PlayerPickupItemEvent event) {
-
+	public void onItemPickup(PlayerPickupItemEvent event)
+	{
 		if (event.getItem().getVehicle() != null)
 			event.getItem().getVehicle().remove();
 	}
 
 	@EventHandler
-	public void onItemDespawn(ItemDespawnEvent event) {
-
+	public void onItemDespawn(ItemDespawnEvent event) 
+	{
 		if (event.getEntity().getVehicle() != null)
 			event.getEntity().getVehicle().remove();
 	}
 
 	// Debug Method
 	@EventHandler
-	public void onBlockPlace(BlockPlaceEvent event) {
-
+	public void onBlockPlace(BlockPlaceEvent event)
+	{
 		for (int i = 0; i < event.getPlayer().getWorld().getEntities().size(); i++)
 			if (event.getPlayer().getWorld().getEntities().get(i) instanceof WitherSkull)
 				event.getPlayer().getWorld().spawn(event.getPlayer().getWorld().getEntities().get(i).getLocation(), Horse.class);
