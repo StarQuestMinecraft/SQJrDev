@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>nickmiste</groupId>
   <artifactId>SpaceItems</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <repositories>
        <repository>
            <id>bukkit-repo</id>

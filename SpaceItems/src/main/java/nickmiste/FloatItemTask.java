@@ -58,10 +58,8 @@ public class FloatItemTask extends BukkitRunnable
 			if (id1 != 0) 
 				air1 = false;
 			
-			if (id2 != 0) 
-			{
-			air2 = false;
-			}
+			if (id2 != 0)
+				air2 = false;
 		}
 		if ((!air1) && (!air2))
 			return false;
