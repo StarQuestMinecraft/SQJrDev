@@ -30,7 +30,7 @@ public class FloatItemTask extends BukkitRunnable
 		{
 			if (item.getVehicle() == null)
 			{
-				WitherSkull skull = item.getWorld().spawn(item.getLocation().add(0, -1, 0), WitherSkull.class);
+				WitherSkull skull = item.getWorld().spawn(item.getLocation().add(0, -0.25, 0), WitherSkull.class);
 				skull.setDirection(new Vector(0, 0, 0));
 				skull.setPassenger(item);
 		  	}
