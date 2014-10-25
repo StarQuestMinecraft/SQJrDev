@@ -6,8 +6,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Main extends JavaPlugin implements Listener {
-
+public final class Main extends JavaPlugin implements Listener 
+{
 	@Override
 	public void onEnable() 
 	{
@@ -23,6 +23,8 @@ public final class Main extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onItemSpawn(ItemSpawnEvent event)
 	{
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new FloatItemTask(event.getEntity()), 5, 0);
+		FloatItemTask task = new FloatItemTask(event.getEntity());
+		int taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, task, 5, 0);
+		task.setTaskId(taskId);
 	}
 }

@@ -1,5 +1,6 @@
 package nickmiste;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
@@ -10,7 +11,8 @@ import org.bukkit.util.Vector;
 
 public class FloatItemTask extends BukkitRunnable
 {
-	Item item;
+	private Item item;
+	public int task;
 	
 	public FloatItemTask(Item item)
 	{
@@ -23,7 +25,7 @@ public class FloatItemTask extends BukkitRunnable
 		{	
 			if (item.getVehicle() != null)
 				item.getVehicle().remove();
-			this.cancel();
+			Bukkit.getScheduler().cancelTask(this.task);
 			return;
 		}
 		if (isInSpace(item))
@@ -38,6 +40,11 @@ public class FloatItemTask extends BukkitRunnable
 		else if (item.getVehicle() != null)
 			item.getVehicle().remove();
 		
+	}
+	
+	public void setTaskId(int id)
+	{
+		this.task = id;
 	}
 	
 	private static boolean isInSpace(Entity e)
