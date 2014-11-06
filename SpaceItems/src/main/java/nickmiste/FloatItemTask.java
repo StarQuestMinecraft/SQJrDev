@@ -12,7 +12,7 @@ import org.bukkit.util.Vector;
 public class FloatItemTask extends BukkitRunnable
 {
 	private Item item;
-	public int task;
+	private int task;
 	
 	public FloatItemTask(Item item)
 	{
@@ -22,7 +22,7 @@ public class FloatItemTask extends BukkitRunnable
 	public void run()
 	{
 		if (!item.isValid())
-		{	
+		{
 			if (item.getVehicle() != null)
 				item.getVehicle().remove();
 			Bukkit.getScheduler().cancelTask(this.task);
@@ -71,5 +71,5 @@ public class FloatItemTask extends BukkitRunnable
 		if ((!air1) && (!air2))
 			return false;
 		return true;
-}
+	}
 }

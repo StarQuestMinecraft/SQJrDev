@@ -24,7 +24,7 @@ public final class Main extends JavaPlugin implements Listener
 	public void onItemSpawn(ItemSpawnEvent event)
 	{
 		FloatItemTask task = new FloatItemTask(event.getEntity());
-		int taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, task, 5, 0);
+		int taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, task, 5, 5);
 		task.setTaskId(taskId);
 	}
 }
