@@ -1,0 +1,7 @@
+name: SQParachute
+main: nickmiste.SQParachute
+version: 1.0
+permissions:
+   sqparachute.use
+      description: Allows the player to use parachutes
+      default: op

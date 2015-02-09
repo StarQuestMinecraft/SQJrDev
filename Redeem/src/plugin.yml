@@ -1,0 +1,9 @@
+name: Redeem
+main: us.higashiyama.george.Redeem.Core
+version: 1.0.0
+commands:
+   redeem:
+      description: Redeem rewards.
+      usage: /redeem help
+      
+      
