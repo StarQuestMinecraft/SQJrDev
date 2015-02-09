@@ -1,0 +1,4 @@
+name: ${project.artifactId}
+version: ${project.version}
+main: com.lawrencethefrog.sqinventoryscanner.MainClass
+description: Adds physical inventory scanners to the game
