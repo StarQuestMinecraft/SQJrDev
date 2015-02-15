@@ -1,5 +1,7 @@
 package nickmiste;
 
+import nickmiste.parachutes.DefaultParachute;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -31,7 +33,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 			if (event.getAction().equals(Action.RIGHT_CLICK_AIR) && event.getPlayer().getItemInHand().getType().equals(Material.FEATHER) && 
 				!event.getPlayer().isOnGround() && !Parachute.parachuting.contains(event.getPlayer()))
 			{
-				Parachute parachute = new Parachute(event.getPlayer(), (short) (Math.random() * 15));
+				Parachute parachute = new DefaultParachute(event.getPlayer(), (short) (Math.random() * 15));
 				
 				if (event.getPlayer().getItemInHand().getAmount() > 1)
 					event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount() - 1);

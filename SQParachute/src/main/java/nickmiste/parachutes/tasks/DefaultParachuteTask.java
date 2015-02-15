@@ -1,4 +1,6 @@
-package nickmiste;
+package nickmiste.parachutes.tasks;
+
+import nickmiste.Parachute;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -7,7 +9,7 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.util.Vector;
 
 
-public class ParachuteTask implements Runnable
+public class DefaultParachuteTask implements Runnable
 {
 	private int id;
 	private Parachute parachute;
@@ -20,7 +22,7 @@ public class ParachuteTask implements Runnable
 	private double lastY;
 	private double lastZ;
 	
-	public ParachuteTask(Parachute parachute, ArmorStand armorStand1, ArmorStand armorStand2, ArmorStand armorStand3)
+	public DefaultParachuteTask(Parachute parachute, ArmorStand armorStand1, ArmorStand armorStand2, ArmorStand armorStand3)
 	{
 		this.parachute = parachute;
 		this.armorStand1 = armorStand1;
@@ -33,7 +35,7 @@ public class ParachuteTask implements Runnable
 	}
 	
 	@Override
-	public void run() 
+	public void run()
 	{
 		parachute.player.setVelocity(new Vector(parachute.player.getVelocity().getX(), -0.3, parachute.player.getVelocity().getZ()));
 		
