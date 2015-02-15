@@ -12,11 +12,11 @@ import org.bukkit.util.Vector;
 public class DefaultParachuteTask implements Runnable
 {
 	private int id;
-	private Parachute parachute;
+	protected Parachute parachute;
 	
-	private ArmorStand armorStand1;
-	private ArmorStand armorStand2;
-	private ArmorStand armorStand3;
+	protected ArmorStand armorStand1;
+	protected ArmorStand armorStand2;
+	protected ArmorStand armorStand3;
 	
 	private double lastX;
 	private double lastY;
