@@ -3,6 +3,7 @@ package nickmiste;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.util.Vector;
 
 
@@ -55,9 +56,16 @@ public class ParachuteTask implements Runnable
 		this.lastY = parachute.player.getLocation().getY();
 		this.lastZ = parachute.player.getLocation().getZ();
 		
-		if (this.parachute.player.isOnGround())
+		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline())
 		{
 			Parachute.parachuting.remove(parachute.player);
+			armorStand1.remove();
+			armorStand2.remove();
+			armorStand3.remove();
+			Bukkit.getScheduler().cancelTask(this.id);
+		}
+		else if (!Parachute.parachuting.contains(parachute.player))
+		{
 			armorStand1.remove();
 			armorStand2.remove();
 			armorStand3.remove();
