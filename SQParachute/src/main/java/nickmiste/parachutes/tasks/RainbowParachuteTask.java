@@ -16,7 +16,7 @@ public class RainbowParachuteTask extends DefaultParachuteTask
 	public void run()
 	{
 		super.run();
-		if (this.parachute.player.getWorld().getTime() % 10 == 0)
+		if (this.parachute.player.getWorld().getTime() % 60 == 0)
 		{
 			ItemStack helmet1 = this.armorStand1.getHelmet();
 			ItemStack helmet2 = this.armorStand2.getHelmet();

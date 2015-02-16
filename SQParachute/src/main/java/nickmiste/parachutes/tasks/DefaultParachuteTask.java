@@ -1,17 +1,16 @@
 package nickmiste.parachutes.tasks;
 
 import nickmiste.Parachute;
+import nickmiste.ParachuteTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.util.Vector;
 
 
-public class DefaultParachuteTask implements Runnable
+public class DefaultParachuteTask extends ParachuteTask
 {
-	private int id;
 	protected Parachute parachute;
 	
 	protected ArmorStand armorStand1;
@@ -73,10 +72,5 @@ public class DefaultParachuteTask implements Runnable
 			armorStand3.remove();
 			Bukkit.getScheduler().cancelTask(this.id);
 		}
-	}
-	
-	public void setId(int id)
-	{
-		this.id = id;
 	}
 }
