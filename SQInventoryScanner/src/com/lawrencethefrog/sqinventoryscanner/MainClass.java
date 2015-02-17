@@ -87,7 +87,7 @@ public class MainClass extends JavaPlugin implements Listener{
 					Material iSMaterial = iS.getType();
 					if(iSMaterial == furnaceItemType){	//if item types match
 						if(isPrecise){					//if precise, checks item name
-							if (furnaceInv.getSmelting().getItemMeta().getDisplayName() == iS.getItemMeta().getDisplayName()){
+							if (furnaceInv.getSmelting().getItemMeta().getDisplayName().equals(iS.getItemMeta().getDisplayName())){
 								return true;
 							}
 						} else {						//if imprecise, returns true
