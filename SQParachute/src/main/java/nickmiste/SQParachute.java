@@ -1,5 +1,7 @@
 package nickmiste;
 
+import nickmiste.parachutes.CloudParachute;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -31,7 +33,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 			if (event.getAction().equals(Action.RIGHT_CLICK_AIR) && event.getPlayer().getItemInHand().getType().equals(Material.FEATHER) && 
 				!event.getPlayer().isOnGround() && !Parachute.parachuting.contains(event.getPlayer()))
 			{
-				Parachute parachute = new Parachute(event.getPlayer(), (short) (Math.random() * 15));
+				Parachute parachute = new CloudParachute(event.getPlayer());
 				
 				if (event.getPlayer().getItemInHand().getAmount() > 1)
 					event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount() - 1);
@@ -45,8 +47,12 @@ public final class SQParachute extends JavaPlugin implements Listener
 	public void onDamageTaken(EntityDamageEvent event)
 	{
 		if (event.getEntity() instanceof Player)
+		{
+			if (event.getCause().equals(DamageCause.PROJECTILE) && Parachute.parachuting.contains((Player) event.getEntity()))
+				Parachute.parachuting.remove((Player) event.getEntity());
 			if (event.getCause().equals(DamageCause.FALL) && Parachute.parachuting.contains((Player) event.getEntity()))
 				event.setCancelled(true);
+		}
 	}
 	
 	public static SQParachute getInstance()
