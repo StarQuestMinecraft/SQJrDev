@@ -19,9 +19,11 @@ public class DefaultParachute extends Parachute
 	private ArmorStand armorStand2;
 	private ArmorStand armorStand3;
 	
-	public DefaultParachute(Player player, short color)
+	public DefaultParachute(Player player)
 	{
 		super(player);
+		
+		short color = (short) (Math.random() * 15);
 		
 		this.armorStand1 = player.getWorld().spawn(loc.clone().add(0, 1, 2.3), ArmorStand.class);
 		this.armorStand2 = player.getWorld().spawn(loc.clone().add(0, 2, 1), ArmorStand.class);

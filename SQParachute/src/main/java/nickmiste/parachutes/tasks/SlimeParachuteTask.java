@@ -35,10 +35,5 @@ public class SlimeParachuteTask extends ParachuteTask
 			slime.remove();
 			Bukkit.getScheduler().cancelTask(this.id);
 		}
-		else if (!Parachute.parachuting.contains(parachute.player))
-		{
-			slime.remove();
-			Bukkit.getScheduler().cancelTask(this.id);
-		}
 	}
 }

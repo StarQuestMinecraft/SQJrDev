@@ -29,9 +29,5 @@ public class CloudParachuteTask extends ParachuteTask
 			Parachute.parachuting.remove(parachute.player);
 			Bukkit.getScheduler().cancelTask(this.id);
 		}
-		else if (!Parachute.parachuting.contains(parachute.player))
-		{
-			Bukkit.getScheduler().cancelTask(this.id);
-		}
 	}
 }

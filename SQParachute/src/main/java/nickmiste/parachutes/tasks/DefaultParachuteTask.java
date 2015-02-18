@@ -65,12 +65,5 @@ public class DefaultParachuteTask extends ParachuteTask
 			armorStand3.remove();
 			Bukkit.getScheduler().cancelTask(this.id);
 		}
-		else if (!Parachute.parachuting.contains(parachute.player))
-		{
-			armorStand1.remove();
-			armorStand2.remove();
-			armorStand3.remove();
-			Bukkit.getScheduler().cancelTask(this.id);
-		}
 	}
 }

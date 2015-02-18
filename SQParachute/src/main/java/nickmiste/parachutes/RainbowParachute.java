@@ -7,6 +7,7 @@ import nickmiste.parachutes.tasks.RainbowParachuteTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -22,22 +23,25 @@ public class RainbowParachute extends Parachute
 	{
 		super(player);
 
+		ItemStack stack = new ItemStack(Material.BANNER, 1, (short) 1);
+		stack.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 1);
+		
 		this.armorStand1 = player.getWorld().spawn(loc.clone().add(0, 1, 2.3), ArmorStand.class);
 		this.armorStand2 = player.getWorld().spawn(loc.clone().add(0, 2, 1), ArmorStand.class);
 		this.armorStand3 = player.getWorld().spawn(loc.clone().add(0, 1, -3), ArmorStand.class);
 		
 		this.armorStand1.setHeadPose(new EulerAngle(5 * Math.PI / 3, 0, 0));
-		this.armorStand1.getEquipment().setHelmet(new ItemStack(Material.BANNER, 1, (short) 0));
+		this.armorStand1.getEquipment().setHelmet(stack);
 		this.armorStand1.setGravity(false);
 		this.armorStand1.setVisible(false);
 		
 		this.armorStand2.setHeadPose(new EulerAngle(3 * Math.PI / 2, 0, 0));
-		this.armorStand2.getEquipment().setHelmet(new ItemStack(Material.BANNER, 1, (short) 0));
+		this.armorStand2.getEquipment().setHelmet(stack);
 		this.armorStand2.setGravity(false);
 		this.armorStand2.setVisible(false);
 		
 		this.armorStand3.setHeadPose(new EulerAngle(5 * Math.PI / 3, Math.PI, 0));
-		this.armorStand3.getEquipment().setHelmet(new ItemStack(Material.BANNER, 1, (short) 0));
+		this.armorStand3.getEquipment().setHelmet(stack);
 		this.armorStand3.setGravity(false);
 		this.armorStand3.setVisible(false);
 		

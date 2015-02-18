@@ -5,3 +5,6 @@ permissions:
    sqparachute.use:
       description: Allows the player to use parachutes
       default: op
+commands:
+   parachute:
+      description: Change your parachute
