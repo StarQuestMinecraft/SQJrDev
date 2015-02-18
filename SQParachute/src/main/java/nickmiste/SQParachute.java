@@ -57,7 +57,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 		}
 		else if (event.getEntity() instanceof Slime)
 		{
-			if (SteampunkParachuteTask.parachutingSlimes.contains((Slime) event.getEntity()))
+			if (Parachute.parachutingSlimes.contains((Slime) event.getEntity()))
 					event.setCancelled(true);
 		}
 	}

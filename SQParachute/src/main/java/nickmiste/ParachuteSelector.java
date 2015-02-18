@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import nickmiste.parachutes.CloudParachute;
 import nickmiste.parachutes.DefaultParachute;
+import nickmiste.parachutes.IronicParachute;
 import nickmiste.parachutes.RainbowParachute;
 import nickmiste.parachutes.SteampunkParachute;
 
@@ -29,6 +30,7 @@ public class ParachuteSelector
 	private static final String DEFAULT_PARACHUTE = ChatColor.GRAY + "Default Parachute";
 	private static final String CLOUD_PARACHUTE = ChatColor.BOLD + "Cloud Parachute";
 	private static final String STEAMPUNK_PARACHUTE = ChatColor.DARK_GRAY + "Steam" + ChatColor.GOLD + "punk" + ChatColor.DARK_GRAY + " Parachute";
+	private static final String IRONIC_PARACHUTE = ChatColor.DARK_GRAY + "Iron" + ChatColor.GRAY + "ic Parachute";
 	
 	static
 	{
@@ -36,6 +38,7 @@ public class ParachuteSelector
 		addItem(1, Material.WOOL, 0, CLOUD_PARACHUTE, false);
 		addItem(2, Material.GOLD_INGOT, 0, RAINBOW_PARACHUTE, true);
 		addItem(3, Material.WOOD_BUTTON, 0, STEAMPUNK_PARACHUTE, false);
+		addItem(4, Material.ANVIL, 0, IRONIC_PARACHUTE, false);
 	}
 	
 	private static void addItem(int slot, Material material, int damage, String name, boolean enchanted)
@@ -43,9 +46,12 @@ public class ParachuteSelector
 		ItemStack stack = new ItemStack(material, 1, (short) damage);
 		ItemMeta meta = stack.getItemMeta();
 		meta.setDisplayName(name);
-		stack.setItemMeta(meta);
 		if (enchanted)
-			stack.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 10);
+		{
+			stack.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 1);
+			meta.setLore(null);
+		}
+		stack.setItemMeta(meta);
 		selector.addItem(stack);
 	}
 	
@@ -73,5 +79,7 @@ public class ParachuteSelector
 			new RainbowParachute(player);
 		else if (parachutes.get(player).equals(STEAMPUNK_PARACHUTE))
 			new SteampunkParachute(player);
+		else if (parachutes.get(player).equals(IRONIC_PARACHUTE))
+			new IronicParachute(player);
 	}
 }

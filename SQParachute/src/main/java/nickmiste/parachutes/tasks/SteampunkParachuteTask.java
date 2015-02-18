@@ -12,9 +12,7 @@ import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 public class SteampunkParachuteTask extends ParachuteTask
-{
-	public static ArrayList<Slime> parachutingSlimes = new ArrayList<Slime>();
-	
+{	
 	private Parachute parachute;
 	
 	private ArmorStand armorStand1;
@@ -32,7 +30,7 @@ public class SteampunkParachuteTask extends ParachuteTask
 		this.slimes = slimes;
 		
 		for (Slime slime : slimes)
-			parachutingSlimes.add(slime);
+			Parachute.parachutingSlimes.add(slime);
 		
 		this.iteration = 0;
 	}
@@ -41,10 +39,6 @@ public class SteampunkParachuteTask extends ParachuteTask
 	public void run()
 	{
 		parachute.player.setVelocity(new Vector(parachute.player.getVelocity().getX(), -0.3, parachute.player.getVelocity().getZ()));
-		
-//		armorStand1.setHeadPose(new EulerAngle(-Math.PI / 2, Math.PI / 2, -Math.sin(iteration) * (Math.PI / 6)));
-//		
-//		armorStand2.setHeadPose(new EulerAngle(-Math.PI / 2, -Math.PI / 2, Math.sin(iteration) * (Math.PI / 6)));
 		
 		armorStand1.setHeadPose(new EulerAngle(Math.sin(iteration) * (Math.PI / 6) - Math.PI / 2, parachute.player.getLocation().getYaw() * (Math.PI / 180) + Math.PI / 2, 0));
 		
@@ -59,7 +53,7 @@ public class SteampunkParachuteTask extends ParachuteTask
 			armorStand2.remove();
 			for (Slime slime: slimes)
 			{
-				parachutingSlimes.remove(slime);
+				Parachute.parachutingSlimes.remove(slime);
 				slime.remove();
 			}
 			Bukkit.getScheduler().cancelTask(this.id);
