@@ -4,9 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -14,9 +12,10 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerKickEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.spigotmc.event.entity.EntityDismountEvent;
 
 public final class SQParachute extends JavaPlugin implements Listener
 {
@@ -63,6 +62,18 @@ public final class SQParachute extends JavaPlugin implements Listener
 			ParachuteSelector.setParachute((Player) event.getWhoClicked(), event.getCurrentItem().getItemMeta().getDisplayName());
 			event.setCancelled(true);
 		}
+	}
+	
+	@EventHandler
+	public void onPlayerQuit(PlayerQuitEvent event)
+	{
+		ParachuteSelector.parachutes.remove(event.getPlayer());
+	}
+	
+	@EventHandler
+	public void onPlayerKicked(PlayerKickEvent event)
+	{
+		ParachuteSelector.parachutes.remove(event.getPlayer());
 	}
 	
 	@Override
