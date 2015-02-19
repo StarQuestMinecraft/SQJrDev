@@ -1,11 +1,10 @@
 package nickmiste;
 
-import nickmiste.parachutes.tasks.SteampunkParachuteTask;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
@@ -17,6 +16,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.spigotmc.event.entity.EntityDismountEvent;
 
 public final class SQParachute extends JavaPlugin implements Listener
 {
@@ -51,15 +51,8 @@ public final class SQParachute extends JavaPlugin implements Listener
 	public void onDamageTaken(EntityDamageEvent event)
 	{
 		if (event.getEntity() instanceof Player)
-		{
 			if (event.getCause().equals(DamageCause.FALL) && Parachute.parachuting.contains((Player) event.getEntity()))
 				event.setCancelled(true);
-		}
-		else if (event.getEntity() instanceof Slime)
-		{
-			if (Parachute.parachutingSlimes.contains((Slime) event.getEntity()))
-					event.setCancelled(true);
-		}
 	}
 	
 	@EventHandler

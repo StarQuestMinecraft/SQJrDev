@@ -21,9 +21,6 @@ public class IronicParachuteTask extends ParachuteTask
 		this.anvil = anvil;
 		this.slime1 = slime1;
 		this.slime2 = slime2;
-		
-		Parachute.parachutingSlimes.add(slime1);
-		Parachute.parachutingSlimes.add(slime2);
 	}
 	
 	@Override
@@ -37,8 +34,6 @@ public class IronicParachuteTask extends ParachuteTask
 			anvil.remove();
 			slime1.remove();
 			slime2.remove();
-			Parachute.parachutingSlimes.remove(slime1);
-			Parachute.parachutingSlimes.remove(slime2);
 			Bukkit.getScheduler().cancelTask(this.id);
 		}
 	}	

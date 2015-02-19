@@ -6,6 +6,7 @@ import nickmiste.parachutes.CloudParachute;
 import nickmiste.parachutes.DefaultParachute;
 import nickmiste.parachutes.IronicParachute;
 import nickmiste.parachutes.RainbowParachute;
+import nickmiste.parachutes.SkydogParachute;
 import nickmiste.parachutes.SteampunkParachute;
 
 import org.bukkit.Bukkit;
@@ -31,6 +32,7 @@ public class ParachuteSelector
 	private static final String CLOUD_PARACHUTE = ChatColor.BOLD + "Cloud Parachute";
 	private static final String STEAMPUNK_PARACHUTE = ChatColor.DARK_GRAY + "Steam" + ChatColor.GOLD + "punk" + ChatColor.DARK_GRAY + " Parachute";
 	private static final String IRONIC_PARACHUTE = ChatColor.DARK_GRAY + "Iron" + ChatColor.GRAY + "ic Parachute";
+	private static final String SKYDOG_PARACHUTE = ChatColor.DARK_RED + "Sky" + ChatColor.BLACK + "dogs";
 	
 	static
 	{
@@ -39,6 +41,7 @@ public class ParachuteSelector
 		addItem(2, Material.GOLD_INGOT, 0, RAINBOW_PARACHUTE, true);
 		addItem(3, Material.WOOD_BUTTON, 0, STEAMPUNK_PARACHUTE, false);
 		addItem(4, Material.ANVIL, 0, IRONIC_PARACHUTE, false);
+		addItem(5, Material.BONE, 0, SKYDOG_PARACHUTE, false);
 	}
 	
 	private static void addItem(int slot, Material material, int damage, String name, boolean enchanted)
@@ -47,10 +50,7 @@ public class ParachuteSelector
 		ItemMeta meta = stack.getItemMeta();
 		meta.setDisplayName(name);
 		if (enchanted)
-		{
-			stack.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 1);
-			meta.setLore(null);
-		}
+			stack.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 10);
 		stack.setItemMeta(meta);
 		selector.addItem(stack);
 	}
@@ -81,5 +81,7 @@ public class ParachuteSelector
 			new SteampunkParachute(player);
 		else if (parachutes.get(player).equals(IRONIC_PARACHUTE))
 			new IronicParachute(player);
+		else if (parachutes.get(player).equals(SKYDOG_PARACHUTE))
+			new SkydogParachute(player);
 	}
 }

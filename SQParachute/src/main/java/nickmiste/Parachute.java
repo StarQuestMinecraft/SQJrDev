@@ -3,6 +3,7 @@ package nickmiste;
 import java.util.ArrayList;
 
 import org.bukkit.Location;
+import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 
@@ -13,7 +14,6 @@ public abstract class Parachute
 	protected Location loc;
 	
 	public static ArrayList<Player> parachuting = new ArrayList<Player>();
-	public static ArrayList<Slime> parachutingSlimes = new ArrayList<Slime>();
 	
 	public Parachute(Player player)
 	{

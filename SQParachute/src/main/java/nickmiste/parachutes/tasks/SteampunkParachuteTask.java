@@ -1,7 +1,5 @@
 package nickmiste.parachutes.tasks;
 
-import java.util.ArrayList;
-
 import nickmiste.Parachute;
 import nickmiste.ParachuteTask;
 
@@ -29,9 +27,6 @@ public class SteampunkParachuteTask extends ParachuteTask
 		this.armorStand2 = armorStand2;
 		this.slimes = slimes;
 		
-		for (Slime slime : slimes)
-			Parachute.parachutingSlimes.add(slime);
-		
 		this.iteration = 0;
 	}
 	
@@ -52,10 +47,7 @@ public class SteampunkParachuteTask extends ParachuteTask
 			armorStand1.remove();
 			armorStand2.remove();
 			for (Slime slime: slimes)
-			{
-				Parachute.parachutingSlimes.remove(slime);
 				slime.remove();
-			}
 			Bukkit.getScheduler().cancelTask(this.id);
 		}
 	}
