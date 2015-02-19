@@ -50,6 +50,9 @@ public class SkydogParachute extends Parachute
 		armorStand2.setGravity(false);
 		armorStand2.setVisible(false);
 		
+		Parachute.parachutingArmorStands.add(armorStand1);
+		Parachute.parachutingArmorStands.add(armorStand2);
+		
 		skydog = player.getWorld().spawn(loc, Wolf.class);
 		skydog.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 4, false, false));
 		skydog.setBreed(false);

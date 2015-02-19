@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,6 +12,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -54,6 +56,14 @@ public final class SQParachute extends JavaPlugin implements Listener
 					event.getPlayer().setItemInHand(new ItemStack(Material.AIR));
 			}
 		}
+	}
+	
+	@EventHandler
+	public void onPlayerInteractEntity(PlayerInteractEntityEvent event)
+	{
+		if (event.getRightClicked() instanceof ArmorStand)
+			if (Parachute.parachutingArmorStands.contains((ArmorStand) event.getRightClicked()))
+				event.setCancelled(true);
 	}
 	
 	@EventHandler

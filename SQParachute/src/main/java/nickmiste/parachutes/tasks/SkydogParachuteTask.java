@@ -43,6 +43,8 @@ public class SkydogParachuteTask extends ParachuteTask
 		if (skydog.isOnGround() || !this.parachute.player.isOnline())
 		{
 			Parachute.parachuting.remove(parachute.player);
+			Parachute.parachutingArmorStands.remove(armorStand2);
+			Parachute.parachutingArmorStands.remove(armorStand2);
 			armorStand1.remove();
 			armorStand2.remove();
 			skydog.remove();

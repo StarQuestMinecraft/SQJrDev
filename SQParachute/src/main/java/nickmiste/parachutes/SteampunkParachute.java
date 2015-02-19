@@ -47,6 +47,9 @@ public class SteampunkParachute extends Parachute
 		armorStand2.setGravity(false);
 		armorStand2.setVisible(false);
 		
+		Parachute.parachutingArmorStands.add(armorStand1);
+		Parachute.parachutingArmorStands.add(armorStand2);
+		
 		Slime slime1 = player.getWorld().spawn(player.getLocation(), Slime.class);
 		Slime slime2 = player.getWorld().spawn(player.getLocation(), Slime.class);
 		Slime slime3 = player.getWorld().spawn(player.getLocation(), Slime.class);

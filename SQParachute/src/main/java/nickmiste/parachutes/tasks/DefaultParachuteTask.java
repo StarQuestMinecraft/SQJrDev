@@ -60,6 +60,9 @@ public class DefaultParachuteTask extends ParachuteTask
 		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline())
 		{
 			Parachute.parachuting.remove(parachute.player);
+			Parachute.parachutingArmorStands.remove(armorStand1);
+			Parachute.parachutingArmorStands.remove(armorStand2);
+			Parachute.parachutingArmorStands.remove(armorStand3);
 			armorStand1.remove();
 			armorStand2.remove();
 			armorStand3.remove();

@@ -44,6 +44,8 @@ public class SteampunkParachuteTask extends ParachuteTask
 		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline())
 		{
 			Parachute.parachuting.remove(parachute.player);
+			Parachute.parachutingArmorStands.remove(armorStand1);
+			Parachute.parachutingArmorStands.remove(armorStand2);
 			armorStand1.remove();
 			armorStand2.remove();
 			for (Slime slime: slimes)
