@@ -87,7 +87,12 @@ public class MainClass extends JavaPlugin implements Listener{
 					Material iSMaterial = iS.getType();
 					if(iSMaterial == furnaceItemType){	//if item types match
 						if(isPrecise){					//if precise, checks item name
-							if (furnaceInv.getSmelting().getItemMeta().getDisplayName().equals(iS.getItemMeta().getDisplayName())){
+							String furnaceItemName = furnaceInv.getSmelting().getItemMeta().getDisplayName();
+							String playerItemName = iS.getItemMeta().getDisplayName();
+							//check for match if neither of them has been renamed
+							if(furnaceItemName == null && playerItemName == null){
+								return true;
+							}else if (furnaceItemName.equals(playerItemName)){
 								return true;
 							}
 						} else {						//if imprecise, returns true
