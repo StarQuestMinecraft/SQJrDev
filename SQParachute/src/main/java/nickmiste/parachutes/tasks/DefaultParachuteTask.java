@@ -36,7 +36,7 @@ public class DefaultParachuteTask extends ParachuteTask
 	@Override
 	public void run()
 	{
-		parachute.player.setVelocity(new Vector(parachute.player.getVelocity().getX(), -0.3, parachute.player.getVelocity().getZ()));
+		parachute.player.setVelocity(new Vector(0, -0.3, 0));
 		
 		armorStand1.teleport(new Location(this.armorStand1.getWorld(),
 										  this.armorStand1.getLocation().getX() - (lastX - parachute.player.getLocation().getX()),

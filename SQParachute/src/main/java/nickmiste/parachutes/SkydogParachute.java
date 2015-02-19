@@ -21,6 +21,8 @@ import org.bukkit.util.EulerAngle;
 
 public class SkydogParachute extends Parachute
 {
+	public Wolf skydog;
+	
 	public SkydogParachute(Player player)
 	{
 		super(player);
@@ -48,8 +50,9 @@ public class SkydogParachute extends Parachute
 		armorStand2.setGravity(false);
 		armorStand2.setVisible(false);
 		
-		Wolf skydog = player.getWorld().spawn(loc, Wolf.class);
+		skydog = player.getWorld().spawn(loc, Wolf.class);
 		skydog.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 4, false, false));
+		skydog.setBreed(false);
 		
 		Slime slime1 = player.getWorld().spawn(player.getLocation(), Slime.class);
 		Slime slime2 = player.getWorld().spawn(player.getLocation(), Slime.class);

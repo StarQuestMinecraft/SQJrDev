@@ -65,23 +65,25 @@ public class ParachuteSelector
 		Bukkit.broadcastMessage(parachutes.toString());
 	}
 	
-	public static void startParachuting(Player player)
+	public static Parachute startParachuting(Player player)
 	{
-		if (!parachutes.containsKey(player))
-		{
-			new DefaultParachute(player);
-			return;
-		}	
+		if (parachutes.containsKey(player))
+			if (parachutes.get(player).equals(CLOUD_PARACHUTE))
+				return new CloudParachute(player);
+			else if (parachutes.get(player).equals(RAINBOW_PARACHUTE))
+				return new RainbowParachute(player);
+			else if (parachutes.get(player).equals(STEAMPUNK_PARACHUTE))
+				return new SteampunkParachute(player);
+			else if (parachutes.get(player).equals(IRONIC_PARACHUTE))
+				return new IronicParachute(player);
+			else if (parachutes.get(player).equals(SKYDOG_PARACHUTE))
+				return new SkydogParachute(player);
 		
-		if (parachutes.get(player).equals(CLOUD_PARACHUTE))
-			new CloudParachute(player);
-		else if (parachutes.get(player).equals(RAINBOW_PARACHUTE))
-			new RainbowParachute(player);
-		else if (parachutes.get(player).equals(STEAMPUNK_PARACHUTE))
-			new SteampunkParachute(player);
-		else if (parachutes.get(player).equals(IRONIC_PARACHUTE))
-			new IronicParachute(player);
-		else if (parachutes.get(player).equals(SKYDOG_PARACHUTE))
-			new SkydogParachute(player);
+		return new DefaultParachute(player);
+	}
+	
+	public static void startGliding(Player player)
+	{
+		new HangGlider(startParachuting(player));
 	}
 }

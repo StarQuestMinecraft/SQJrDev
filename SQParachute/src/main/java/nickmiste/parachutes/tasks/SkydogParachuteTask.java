@@ -35,7 +35,7 @@ public class SkydogParachuteTask extends ParachuteTask
 	@Override
 	public void run()
 	{
-		skydog.setVelocity(new Vector(parachute.player.getVelocity().getX(), -0.3, parachute.player.getVelocity().getZ()));
+		parachute.player.setVelocity(new Vector(0, -0.3, 0));
 		skydog.setPassenger(parachute.player);
 		
 		iteration += 0.01;

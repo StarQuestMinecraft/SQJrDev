@@ -26,7 +26,7 @@ public class IronicParachuteTask extends ParachuteTask
 	@Override
 	public void run() 
 	{
-		parachute.player.setVelocity(new Vector(parachute.player.getVelocity().getX(), -0.3, parachute.player.getVelocity().getZ()));
+		parachute.player.setVelocity(new Vector(0, -0.3, 0));
 		
 		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline())
 		{

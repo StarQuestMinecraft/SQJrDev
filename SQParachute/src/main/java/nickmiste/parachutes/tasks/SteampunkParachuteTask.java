@@ -33,7 +33,7 @@ public class SteampunkParachuteTask extends ParachuteTask
 	@Override
 	public void run()
 	{
-		parachute.player.setVelocity(new Vector(parachute.player.getVelocity().getX(), -0.3, parachute.player.getVelocity().getZ()));
+		parachute.player.setVelocity(new Vector(0, -0.3, 0));
 		
 		armorStand1.setHeadPose(new EulerAngle(Math.sin(iteration) * (Math.PI / 6) - Math.PI / 2, parachute.player.getLocation().getYaw() * (Math.PI / 180) + Math.PI / 2, 0));
 		
