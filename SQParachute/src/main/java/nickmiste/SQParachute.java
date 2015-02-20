@@ -61,11 +61,9 @@ public final class SQParachute extends JavaPlugin implements Listener
 	@EventHandler
 	public void onPlayerInteractEntity(PlayerInteractAtEntityEvent event)
 	{
-		Bukkit.broadcastMessage("event triggered");
 		if (event.getRightClicked() instanceof ArmorStand)
 			if (Parachute.parachutingArmorStands.contains((ArmorStand) event.getRightClicked()))
 			{
-				Bukkit.broadcastMessage("event cancelled");
 				event.setCancelled(true);
 			}
 	}
