@@ -5,6 +5,7 @@ import java.util.HashMap;
 import nickmiste.parachutes.CloudParachute;
 import nickmiste.parachutes.DefaultParachute;
 import nickmiste.parachutes.IronicParachute;
+import nickmiste.parachutes.MeteorParachute;
 import nickmiste.parachutes.RainbowParachute;
 import nickmiste.parachutes.SkydogParachute;
 import nickmiste.parachutes.SteampunkParachute;
@@ -28,20 +29,22 @@ public class ParachuteSelector
 			ChatColor.DARK_AQUA + " P" + ChatColor.BLUE + "a" + ChatColor.DARK_BLUE+ "r" + ChatColor.LIGHT_PURPLE + "a" +
 			ChatColor.DARK_PURPLE + "c" + ChatColor.DARK_RED + "h" + ChatColor.RED + "u" + ChatColor.GOLD + "t" +
 			ChatColor.YELLOW + "e";
-	private static final String DEFAULT_PARACHUTE = ChatColor.GRAY + "Default Parachute";
 	private static final String CLOUD_PARACHUTE = ChatColor.BOLD + "Cloud Parachute";
+	private static final String DEFAULT_PARACHUTE = ChatColor.GRAY + "Default Parachute";
 	private static final String STEAMPUNK_PARACHUTE = ChatColor.DARK_GRAY + "Steam" + ChatColor.GOLD + "punk" + ChatColor.DARK_GRAY + " Parachute";
 	private static final String IRONIC_PARACHUTE = ChatColor.DARK_GRAY + "Iron" + ChatColor.GRAY + "ic Parachute";
 	private static final String SKYDOG_PARACHUTE = ChatColor.DARK_RED + "Sky" + ChatColor.GRAY + "dog";
+	private static final String METEOR_PARACHUTE = ChatColor.RED + "" + ChatColor.BOLD + "Meteor";
 	
 	static
 	{
 		addItem(0, Material.FEATHER, 0, DEFAULT_PARACHUTE, false);
-		addItem(1, Material.WOOL, 0, CLOUD_PARACHUTE, false);
+		addItem(1, Material.NETHERRACK, 0, METEOR_PARACHUTE, false);
 		addItem(2, Material.GOLD_INGOT, 0, RAINBOW_PARACHUTE, true);
 		addItem(3, Material.WOOD_BUTTON, 0, STEAMPUNK_PARACHUTE, false);
 		addItem(4, Material.ANVIL, 0, IRONIC_PARACHUTE, false);
 		addItem(5, Material.BONE, 0, SKYDOG_PARACHUTE, false);
+		addItem(6, Material.WOOL, 0, CLOUD_PARACHUTE, false);
 	}
 	
 	private static void addItem(int slot, Material material, int damage, String name, boolean enchanted)
@@ -79,6 +82,8 @@ public class ParachuteSelector
 				return new IronicParachute(player);
 			else if (parachutes.get(player).equals(SKYDOG_PARACHUTE))
 				return new SkydogParachute(player);
+			else if (parachutes.get(player).equals(METEOR_PARACHUTE))
+				return new MeteorParachute(player);
 		
 		return new DefaultParachute(player);
 	}
