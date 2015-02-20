@@ -18,8 +18,6 @@ public class SkydogParachuteTask extends ParachuteTask
 	private Wolf skydog;
 	private Slime[] slimes;
 	
-	private double iteration;
-	
 	public SkydogParachuteTask(Parachute parachute, ArmorStand armorStand1, ArmorStand armorStand2, Wolf skydog, Slime[] slimes)
 	{
 		this.parachute = parachute;
@@ -28,17 +26,13 @@ public class SkydogParachuteTask extends ParachuteTask
 		this.armorStand2 = armorStand2;
 		this.skydog = skydog;
 		this.slimes = slimes;
-		
-		this.iteration = 0;
 	}
 	
 	@Override
 	public void run()
 	{
-		parachute.player.setVelocity(new Vector(0, -0.3, 0));
+		skydog.setVelocity(new Vector(0, -0.3, 0));
 		skydog.setPassenger(parachute.player);
-		
-		iteration += 0.01;
 		
 		if (skydog.isOnGround() || !this.parachute.player.isOnline())
 		{
