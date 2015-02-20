@@ -18,7 +18,7 @@ public class RainbowParachute extends Parachute
 	{
 		super(player);
 
-		ItemStack stack = new ItemStack(Material.BANNER, 1, (short) 1);
+		ItemStack stack = new ItemStack(Material.BANNER, 0, (short) 1);
 		
 		ArmorStand armorStand1 = player.getWorld().spawn(loc.clone().add(0, 1, 2.3), ArmorStand.class);
 		ArmorStand armorStand2 = player.getWorld().spawn(loc.clone().add(0, 2, 1), ArmorStand.class);

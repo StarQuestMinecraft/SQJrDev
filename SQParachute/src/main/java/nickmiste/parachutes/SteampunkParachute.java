@@ -23,7 +23,7 @@ public class SteampunkParachute extends Parachute
 	{
 		super(player);
 		
-		ItemStack stack = new ItemStack(Material.BANNER, 1);
+		ItemStack stack = new ItemStack(Material.BANNER, 0);
 		BannerMeta meta = (BannerMeta) stack.getItemMeta();
 		meta.setBaseColor(DyeColor.GRAY);
 		meta.addPattern(new Pattern(DyeColor.BLACK, PatternType.SQUARE_BOTTOM_LEFT));

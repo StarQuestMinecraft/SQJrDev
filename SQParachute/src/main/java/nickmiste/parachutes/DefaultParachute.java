@@ -26,17 +26,17 @@ public class DefaultParachute extends Parachute
 		ArmorStand armorStand3 = player.getWorld().spawn(loc.clone().add(0, 1, -3), ArmorStand.class);
 		
 		armorStand1.setHeadPose(new EulerAngle(5 * Math.PI / 3, 0, 0));
-		armorStand1.getEquipment().setHelmet(new ItemStack(Material.BANNER, 1, color));
+		armorStand1.getEquipment().setHelmet(new ItemStack(Material.BANNER, 0, color));
 		armorStand1.setGravity(false);
 		armorStand1.setVisible(false);
 		
 		armorStand2.setHeadPose(new EulerAngle(3 * Math.PI / 2, 0, 0));
-		armorStand2.getEquipment().setHelmet(new ItemStack(Material.BANNER, 1, color));
+		armorStand2.getEquipment().setHelmet(new ItemStack(Material.BANNER, 0, color));
 		armorStand2.setGravity(false);
 		armorStand2.setVisible(false);
 		
 		armorStand3.setHeadPose(new EulerAngle(5 * Math.PI / 3, Math.PI, 0));
-		armorStand3.getEquipment().setHelmet(new ItemStack(Material.BANNER, 1, color));
+		armorStand3.getEquipment().setHelmet(new ItemStack(Material.BANNER, 0, color));
 		armorStand3.setGravity(false);
 		armorStand3.setVisible(false);
 		

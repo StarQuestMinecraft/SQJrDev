@@ -12,7 +12,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -59,11 +59,15 @@ public final class SQParachute extends JavaPlugin implements Listener
 	}
 	
 	@EventHandler
-	public void onPlayerInteractEntity(PlayerInteractEntityEvent event)
+	public void onPlayerInteractEntity(PlayerInteractAtEntityEvent event)
 	{
+		Bukkit.broadcastMessage("event triggered");
 		if (event.getRightClicked() instanceof ArmorStand)
 			if (Parachute.parachutingArmorStands.contains((ArmorStand) event.getRightClicked()))
+			{
+				Bukkit.broadcastMessage("event cancelled");
 				event.setCancelled(true);
+			}
 	}
 	
 	@EventHandler

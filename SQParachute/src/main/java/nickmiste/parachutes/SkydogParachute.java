@@ -30,14 +30,14 @@ public class SkydogParachute extends Parachute
 		ArmorStand armorStand1 = player.getWorld().spawn(loc, ArmorStand.class);
 		ArmorStand armorStand2 = player.getWorld().spawn(loc, ArmorStand.class);
 		
-		ItemStack stack1 = new ItemStack(Material.BANNER, 1, (short) 15);
+		ItemStack stack1 = new ItemStack(Material.BANNER, 0, (short) 0);
 		BannerMeta meta1 = (BannerMeta) stack1.getItemMeta();
-		meta1.addPattern(new Pattern(DyeColor.ORANGE, PatternType.STRIPE_DOWNRIGHT));
+		meta1.addPattern(new Pattern(DyeColor.RED, PatternType.STRIPE_DOWNRIGHT));
 		stack1.setItemMeta(meta1);
 		
-		ItemStack stack2 = new ItemStack(Material.BANNER, 1, (short) 15);
+		ItemStack stack2 = new ItemStack(Material.BANNER, 0, (short) 0);
 		BannerMeta meta2 = (BannerMeta) stack2.getItemMeta();
-		meta2.addPattern(new Pattern(DyeColor.ORANGE, PatternType.STRIPE_DOWNLEFT));
+		meta2.addPattern(new Pattern(DyeColor.RED, PatternType.STRIPE_DOWNLEFT));
 		stack2.setItemMeta(meta2);
 		
 		armorStand1.setHeadPose(new EulerAngle(0, Math.PI / 2, Math.PI / 2));
