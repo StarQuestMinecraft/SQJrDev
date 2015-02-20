@@ -1,5 +1,6 @@
 package nickmiste;
 
+import nickmiste.parachutes.IronicParachute;
 import nickmiste.parachutes.SkydogParachute;
 
 import org.bukkit.Bukkit;
@@ -21,6 +22,8 @@ public class HangGliderTask extends ParachuteTask
 		
 		if (parachute instanceof SkydogParachute)
 			((SkydogParachute) parachute).skydog.setVelocity(new Vector(direction.getX(), -0.3, direction.getZ()));
+		else if (parachute instanceof IronicParachute)
+			((IronicParachute) parachute).anvil.setVelocity(new Vector(direction.getX(), -0.3, direction.getZ()));
 		else
 			parachute.player.setVelocity(new Vector(direction.getX(), -0.3, direction.getZ()));
 		
@@ -28,10 +31,15 @@ public class HangGliderTask extends ParachuteTask
 		{
 			Bukkit.getScheduler().cancelTask(this.id);
 		}
-		else if (this.parachute instanceof SkydogParachute)
+		else if (parachute instanceof SkydogParachute)
 		{
-			if (((SkydogParachute) this.parachute).skydog.isOnGround())
+			if (((SkydogParachute) parachute).skydog.isOnGround())
 				Bukkit.getScheduler().cancelTask(this.id);
-		}	
+		}
+		else if (parachute instanceof IronicParachute)
+		{
+			if (((IronicParachute) parachute).anvil.isOnGround())
+				Bukkit.getScheduler().cancelTask(this.id);
+		}
 	}
 }

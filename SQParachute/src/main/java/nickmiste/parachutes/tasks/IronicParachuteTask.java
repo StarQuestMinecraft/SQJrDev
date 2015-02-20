@@ -12,28 +12,24 @@ public class IronicParachuteTask extends ParachuteTask
 {
 	private Parachute parachute;
 	private ArmorStand anvil;
-	private Slime slime1;
-	private Slime slime2;
 	
-	public IronicParachuteTask(Parachute parachute, ArmorStand anvil, Slime slime1, Slime slime2)
+	public IronicParachuteTask(Parachute parachute, ArmorStand anvil)
 	{
 		this.parachute = parachute;
 		this.anvil = anvil;
-		this.slime1 = slime1;
-		this.slime2 = slime2;
 	}
 	
 	@Override
 	public void run() 
 	{
-		parachute.player.setVelocity(new Vector(0, -0.3, 0));
+		anvil.setVelocity(new Vector(0, -0.3, 0));
+		anvil.setPassenger(parachute.player);
 		
-		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline())
+		if (anvil.isOnGround() || !this.parachute.player.isOnline())
 		{
 			Parachute.parachuting.remove(parachute.player);
+			Parachute.parachutingArmorStands.remove(parachute.player);
 			anvil.remove();
-			slime1.remove();
-			slime2.remove();
 			Bukkit.getScheduler().cancelTask(this.id);
 		}
 	}	

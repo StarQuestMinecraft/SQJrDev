@@ -61,8 +61,6 @@ public class ParachuteSelector
 			parachutes.remove(player);
 		if (!parachute.equals(DEFAULT_PARACHUTE))
 			parachutes.put(player, parachute);
-		
-		Bukkit.broadcastMessage(parachutes.toString());
 	}
 	
 	public static Parachute startParachuting(Player player)
