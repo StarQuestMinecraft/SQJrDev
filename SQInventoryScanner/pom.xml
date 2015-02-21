@@ -3,7 +3,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.lawrencethefrog.sqinventoryscanner</groupId>
   <artifactId>sqinventoryscanner</artifactId>
-  <version>1.4</version>
+  <version>1.5</version>
   <name>SQInventoryScanner</name>
   
     
@@ -23,7 +23,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
      </dependencies>
      
      <build>
-         <finalName>${project.artifactId}</finalName>
+         <finalName>SQInventoryScanner</finalName>
          <sourceDirectory>src</sourceDirectory>
          <resources>
              <resource>
@@ -32,7 +32,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
                  <directory>${basedir}</directory>
                  <includes>
                      <include>plugin.yml</include>
-                 </includes>
+                     <include>config.yml</include>
+                 </includes>                 
              </resource>
          </resources>
          

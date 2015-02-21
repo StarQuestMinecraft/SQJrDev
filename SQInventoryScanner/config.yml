@@ -1,0 +1,6 @@
+PreciseMaterial: "GOLD_BLOCK"
+ImpreciseMaterial: "IRON_BLOCK"
+MovingBlockMaterials:
+    Upper: "REDSTONE_BLOCK"
+    Lower: "EMERALD_BLOCK"
+TicksOnFor: 20
