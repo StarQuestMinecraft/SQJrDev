@@ -73,20 +73,13 @@ public class SQInventoryScanner extends JavaPlugin implements Listener{
 	
 	
 	private void tryUpdateStructure(FileConfiguration config, String configPath, ArrayList<Material> structure, int index){
-		Material material = tryGetMaterial(config.getString(configPath));
+		Material material = Material.getMaterial(config.getString(configPath));
 		if (material != null){
 			structure.set(index, material);
 			structure.set(index, material);
 		}
 	}
 	
-	private Material tryGetMaterial(String material){
-		try{
-			return Material.valueOf(material);
-		} catch (Exception ex) {
-			return null;
-		}
-	}
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlateStep(PlayerInteractEvent event){
