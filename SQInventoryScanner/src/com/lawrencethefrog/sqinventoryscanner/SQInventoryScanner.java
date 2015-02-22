@@ -168,7 +168,7 @@ public class SQInventoryScanner extends JavaPlugin implements Listener{
 					@Override
 					public void run(){
 						//checks if the blocks are still there before changing them (to prevent resource spawning)
-						if(savedUpperMovingBlock.getType() == Material.EMERALD_BLOCK && savedLowerMovingBlock.getType() == Material.REDSTONE_BLOCK){
+						if(savedUpperMovingBlock.getType() == savedLowerBlockMaterial && savedLowerMovingBlock.getType() == savedUpperBlockMaterial){
 							savedUpperMovingBlock.setType(savedUpperBlockMaterial);
 							savedLowerMovingBlock.setType(savedLowerBlockMaterial);
 						}
