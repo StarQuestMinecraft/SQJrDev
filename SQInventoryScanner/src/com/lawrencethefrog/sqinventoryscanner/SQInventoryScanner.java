@@ -132,10 +132,14 @@ public class SQInventoryScanner extends JavaPlugin implements Listener{
 						if(isPrecise){					//if precise, checks item name
 							String furnaceItemName = furnaceInv.getSmelting().getItemMeta().getDisplayName();
 							String playerItemName = iS.getItemMeta().getDisplayName();
-							//check for match if neither of them has been renamed
-							if(furnaceItemName == null && playerItemName == null){
-								return true;
-							}else if (furnaceItemName.equals(playerItemName)){
+							//checks if either item is unrenamed
+							if(furnaceItemName == null || playerItemName == null){
+								//checks if both items are unrenamed
+								if (furnaceItemName == null && playerItemName == null){
+									return true;
+								}
+								else return false;
+							} else if (furnaceItemName.equals(playerItemName)){
 								return true;
 							}
 						} else {						//if imprecise, returns true
