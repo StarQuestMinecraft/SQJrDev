@@ -39,7 +39,7 @@ public class MeteorParachuteTask extends ParachuteTask
 		if (this.meteor.isOnGround() || !this.parachute.player.isOnline())
 		{	
 			for (int i = 0; i < 10; i++)
-				parachute.player.getWorld().playEffect(parachute.player.getLocation(), Effect.EXPLOSION_HUGE, 0, 100);
+				parachute.player.getWorld().playEffect(parachute.player.getLocation(), Effect.EXPLOSION_HUGE, 0, 1000);
 			parachute.player.getWorld().playSound(parachute.player.getLocation(), Sound.EXPLODE, 20, 0);
 			meteor.remove();
 			Parachute.parachutingArmorStands.remove(meteor);
