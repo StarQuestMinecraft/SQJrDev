@@ -8,10 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Slime;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 public class IronicParachute extends Parachute
 {

@@ -1,6 +1,5 @@
 package nickmiste;
 
-import nickmiste.parachutes.BalloonParachute;
 import nickmiste.parachutes.IronicParachute;
 import nickmiste.parachutes.MeteorParachute;
 import nickmiste.parachutes.SkydogParachute;

@@ -7,7 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Slime;
 import org.bukkit.entity.Wolf;
-import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 public class SkydogParachuteTask extends ParachuteTask

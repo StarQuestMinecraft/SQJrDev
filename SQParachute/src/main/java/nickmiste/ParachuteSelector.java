@@ -2,7 +2,6 @@ package nickmiste;
 
 import java.util.HashMap;
 
-import nickmiste.parachutes.BalloonParachute;
 import nickmiste.parachutes.CloudParachute;
 import nickmiste.parachutes.DefaultParachute;
 import nickmiste.parachutes.IronicParachute;
@@ -36,7 +35,6 @@ public class ParachuteSelector
 	private static final String IRONIC_PARACHUTE = ChatColor.DARK_GRAY + "Iron" + ChatColor.GRAY + "ic Parachute";
 	private static final String SKYDOG_PARACHUTE = ChatColor.DARK_RED + "Sky" + ChatColor.GRAY + "dog";
 	private static final String METEOR_PARACHUTE = ChatColor.RED + "" + ChatColor.BOLD + "Meteor";
-	private static final String BALLOON_PARACHUTE = ChatColor.RED + "Hot-air Balloon";
 	
 	static
 	{
@@ -46,7 +44,7 @@ public class ParachuteSelector
 		addItem(3, Material.WOOD_BUTTON, 0, STEAMPUNK_PARACHUTE, false);
 		addItem(4, Material.ANVIL, 0, IRONIC_PARACHUTE, false);
 		addItem(5, Material.BONE, 0, SKYDOG_PARACHUTE, false);
-		addItem(6, Material.EGG, 0, BALLOON_PARACHUTE, false);
+		addItem(6, Material.WOOL, 0, CLOUD_PARACHUTE, true);
 	}
 	
 	private static void addItem(int slot, Material material, int damage, String name, boolean enchanted)
@@ -86,8 +84,6 @@ public class ParachuteSelector
 				return new SkydogParachute(player);
 			else if (parachutes.get(player).equals(METEOR_PARACHUTE))
 				return new MeteorParachute(player);
-			else if (parachutes.get(player).equals(BALLOON_PARACHUTE))
-				return new BalloonParachute(player);
 		return new DefaultParachute(player);
 	}
 	

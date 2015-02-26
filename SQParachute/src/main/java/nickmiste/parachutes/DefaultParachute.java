@@ -1,10 +1,8 @@
 package nickmiste.parachutes;
 
 import nickmiste.Parachute;
-import nickmiste.ParachuteTask;
 import nickmiste.SQParachute;
 import nickmiste.parachutes.tasks.DefaultParachuteTask;
-import nickmiste.parachutes.tasks.RainbowParachuteTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

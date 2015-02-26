@@ -5,7 +5,6 @@ import java.util.Queue;
 
 import nickmiste.Parachute;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.inventory.ItemStack;
 

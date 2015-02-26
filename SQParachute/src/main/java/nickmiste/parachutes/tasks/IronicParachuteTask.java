@@ -5,7 +5,6 @@ import nickmiste.ParachuteTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Slime;
 import org.bukkit.util.Vector;
 
 public class IronicParachuteTask extends ParachuteTask
