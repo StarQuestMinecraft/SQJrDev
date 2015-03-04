@@ -41,7 +41,7 @@ public class SteampunkParachuteTask extends ParachuteTask
 		
 		iteration += 0.1;
 		
-		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline())
+		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
 		{
 			Parachute.parachuting.remove(parachute.player);
 			Parachute.parachutingArmorStands.remove(armorStand1);

@@ -24,7 +24,7 @@ public class IronicParachuteTask extends ParachuteTask
 		anvil.setVelocity(new Vector(0, -0.3, 0));
 		anvil.setPassenger(parachute.player);
 		
-		if (anvil.isOnGround() || !this.parachute.player.isOnline())
+		if (anvil.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
 		{
 			Parachute.parachuting.remove(parachute.player);
 			Parachute.parachutingArmorStands.remove(parachute.player);

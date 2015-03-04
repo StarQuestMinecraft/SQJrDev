@@ -2,7 +2,6 @@ package nickmiste;
 
 import java.util.HashMap;
 
-import nickmiste.parachutes.CloudParachute;
 import nickmiste.parachutes.DefaultParachute;
 import nickmiste.parachutes.IronicParachute;
 import nickmiste.parachutes.MeteorParachute;
@@ -21,7 +20,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ParachuteSelector 
 {
-	public static Inventory selector = Bukkit.createInventory(null, 9, "Select a parachute:");
+	public static Inventory selector = Bukkit.createInventory(null, 9, ChatColor.BLACK + "Select a parachute:");
 	public static HashMap<Player, String> parachutes = new HashMap<Player, String>();
 	
 	private static final String RAINBOW_PARACHUTE = ChatColor.DARK_RED + "R" + ChatColor.RED + "a" + ChatColor.GOLD + "i" +
@@ -29,7 +28,6 @@ public class ParachuteSelector
 			ChatColor.DARK_AQUA + " P" + ChatColor.BLUE + "a" + ChatColor.DARK_BLUE+ "r" + ChatColor.LIGHT_PURPLE + "a" +
 			ChatColor.DARK_PURPLE + "c" + ChatColor.DARK_RED + "h" + ChatColor.RED + "u" + ChatColor.GOLD + "t" +
 			ChatColor.YELLOW + "e";
-	private static final String CLOUD_PARACHUTE = ChatColor.BOLD + "Cloud Parachute";
 	private static final String DEFAULT_PARACHUTE = ChatColor.GRAY + "Default Parachute";
 	private static final String STEAMPUNK_PARACHUTE = ChatColor.DARK_GRAY + "Steam" + ChatColor.GOLD + "punk" + ChatColor.DARK_GRAY + " Parachute";
 	private static final String IRONIC_PARACHUTE = ChatColor.DARK_GRAY + "Iron" + ChatColor.GRAY + "ic Parachute";
@@ -38,43 +36,55 @@ public class ParachuteSelector
 	
 	static
 	{
-		addItem(0, Material.FEATHER, 0, DEFAULT_PARACHUTE, false);
-		addItem(1, Material.GOLD_INGOT, 0, RAINBOW_PARACHUTE, true);
-		addItem(2, Material.NETHERRACK, 0, METEOR_PARACHUTE, false);
-		addItem(3, Material.WOOD_BUTTON, 0, STEAMPUNK_PARACHUTE, false);
-		addItem(4, Material.ANVIL, 0, IRONIC_PARACHUTE, false);
-		addItem(5, Material.BONE, 0, SKYDOG_PARACHUTE, false);
-		addItem(6, Material.WOOL, 0, CLOUD_PARACHUTE, true);
+		addItem(0, Material.FEATHER, 0, DEFAULT_PARACHUTE);
+		addItem(1, Material.GOLD_INGOT, 0, RAINBOW_PARACHUTE);
+		addItem(2, Material.NETHERRACK, 0, METEOR_PARACHUTE);
+		addItem(3, Material.WOOD_BUTTON, 0, STEAMPUNK_PARACHUTE);
+		addItem(4, Material.ANVIL, 0, IRONIC_PARACHUTE);
+		addItem(5, Material.BONE, 0, SKYDOG_PARACHUTE);
+		addItem(6, Material.STAINED_GLASS_PANE, 0, " ");
+		addItem(7, Material.STAINED_GLASS_PANE, 0, " ");
+		addItem(8, Material.STAINED_GLASS_PANE, 0, " ");
 	}
 	
-	private static void addItem(int slot, Material material, int damage, String name, boolean enchanted)
+	private static void addItem(int slot, Material material, int damage, String name)
 	{
 		ItemStack stack = new ItemStack(material, 1, (short) damage);
 		ItemMeta meta = stack.getItemMeta();
 		meta.setDisplayName(name);
-		if (enchanted)
-			stack.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 10);
 		stack.setItemMeta(meta);
-		selector.addItem(stack);
+		selector.setItem(slot, stack);
 	}
 	
 	public static void setParachute(Player player, String parachute)
 	{	
-		if (parachutes.containsKey(player))
-			parachutes.remove(player);
-		if (!parachute.equals(DEFAULT_PARACHUTE))
-			parachutes.put(player, parachute);
-		
+		if (player.hasPermission(getStringWithoutFormatting(parachute)))
+		{
+			if (parachutes.containsKey(player))
+				parachutes.remove(player);
+			if (!parachute.equals(DEFAULT_PARACHUTE))
+				parachutes.put(player, parachute);
+			player.sendMessage(parachute + ChatColor.RESET + " has been selected!");
+		}
+		else
+			player.sendMessage("Please donate for that parachute at http://starquestminecraft.buycraft.net/");
+
 		player.closeInventory();
-		player.sendMessage(parachute + ChatColor.RESET + " has been selected!");
+	}
+	
+	private static String getStringWithoutFormatting(String parachute)
+	{
+		String str = "";
+		for (int i = 0; i < parachute.length(); i++)
+			if (parachute.charAt(i) != ChatColor.COLOR_CHAR && parachute.charAt(i - 1) != ChatColor.COLOR_CHAR)
+				str += parachute.charAt(i);
+		return str;
 	}
 	
 	public static Parachute startParachuting(Player player)
 	{
 		if (parachutes.containsKey(player))
-			if (parachutes.get(player).equals(CLOUD_PARACHUTE))
-				return new CloudParachute(player);
-			else if (parachutes.get(player).equals(RAINBOW_PARACHUTE))
+			if (parachutes.get(player).equals(RAINBOW_PARACHUTE))
 				return new RainbowParachute(player);
 			else if (parachutes.get(player).equals(STEAMPUNK_PARACHUTE))
 				return new SteampunkParachute(player);

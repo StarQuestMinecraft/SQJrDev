@@ -34,7 +34,7 @@ public class SkydogParachuteTask extends ParachuteTask
 		skydog.setVelocity(new Vector(0, -0.3, 0));
 		skydog.setPassenger(parachute.player);
 		
-		if (skydog.isOnGround() || !this.parachute.player.isOnline())
+		if (skydog.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
 		{
 			Parachute.parachuting.remove(parachute.player);
 			Parachute.parachutingArmorStands.remove(armorStand2);

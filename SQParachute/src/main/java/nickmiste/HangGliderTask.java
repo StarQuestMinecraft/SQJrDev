@@ -5,6 +5,7 @@ import nickmiste.parachutes.MeteorParachute;
 import nickmiste.parachutes.SkydogParachute;
 
 import org.bukkit.Bukkit;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.util.Vector;
 
 public class HangGliderTask extends ParachuteTask
@@ -18,7 +19,13 @@ public class HangGliderTask extends ParachuteTask
 	
 	@Override
 	public void run() 
-	{
+	{	
+		if (!Parachute.parachuting.contains(parachute.player))
+		{
+			HangGlider.gliding.remove(parachute.player);
+			Bukkit.getScheduler().cancelTask(this.id);
+		}
+		
 		Vector direction = parachute.player.getLocation().getDirection();
 		
 		if (parachute instanceof SkydogParachute)
@@ -31,23 +38,15 @@ public class HangGliderTask extends ParachuteTask
 			parachute.player.setVelocity(new Vector(direction.getX(), -0.3, direction.getZ()));
 		
 		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline())
-		{
 			Bukkit.getScheduler().cancelTask(this.id);
-		}
 		else if (parachute instanceof SkydogParachute)
-		{
 			if (((SkydogParachute) parachute).skydog.isOnGround())
 				Bukkit.getScheduler().cancelTask(this.id);
-		}
 		else if (parachute instanceof IronicParachute)
-		{
 			if (((IronicParachute) parachute).anvil.isOnGround())
 				Bukkit.getScheduler().cancelTask(this.id);
-		}
 		else if (parachute instanceof MeteorParachute)
-		{
 			if (((MeteorParachute) parachute).meteor.isOnGround())
 				Bukkit.getScheduler().cancelTask(this.id);
-		}
 	}
 }

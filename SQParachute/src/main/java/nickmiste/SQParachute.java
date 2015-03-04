@@ -63,17 +63,19 @@ public final class SQParachute extends JavaPlugin implements Listener
 	{
 		if (event.getRightClicked() instanceof ArmorStand)
 			if (Parachute.parachutingArmorStands.contains((ArmorStand) event.getRightClicked()))
-			{
 				event.setCancelled(true);
-			}
 	}
 	
 	@EventHandler
 	public void onDamageTaken(EntityDamageEvent event)
 	{
 		if (event.getEntity() instanceof Player)
+		{
 			if (event.getCause().equals(DamageCause.FALL) && Parachute.parachuting.contains((Player) event.getEntity()))
 				event.setCancelled(true);
+			else if (event.getCause().equals(DamageCause.PROJECTILE) && HangGlider.gliding.contains((Player) event.getEntity()))
+				Parachute.parachuting.remove((Player) event.getEntity());
+		}
 	}
 	
 	@EventHandler
@@ -81,8 +83,12 @@ public final class SQParachute extends JavaPlugin implements Listener
 	{
 		if (event.getInventory().getName().equals(ParachuteSelector.selector.getName()))
 		{
-			ParachuteSelector.setParachute((Player) event.getWhoClicked(), event.getCurrentItem().getItemMeta().getDisplayName());
-			event.setCancelled(true);
+			if (event.getCurrentItem().getItemMeta() != null)
+			{
+				if (event.getCurrentItem().getItemMeta().getDisplayName() != " ")
+					ParachuteSelector.setParachute((Player) event.getWhoClicked(), event.getCurrentItem().getItemMeta().getDisplayName());
+				event.setCancelled(true);
+			}
 		}
 	}
 	
