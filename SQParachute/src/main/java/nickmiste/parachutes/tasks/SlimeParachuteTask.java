@@ -4,33 +4,31 @@ import nickmiste.Parachute;
 import nickmiste.ParachuteTask;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Slime;
 import org.bukkit.util.Vector;
 
-public class IronicParachuteTask extends ParachuteTask
+public class SlimeParachuteTask extends ParachuteTask
 {
 	private Parachute parachute;
-	private ArmorStand anvil;
 	
-	public IronicParachuteTask(Parachute parachute, ArmorStand anvil)
+	private Slime slime;
+	
+	public SlimeParachuteTask(Parachute parachute, Slime slime)
 	{
 		this.parachute = parachute;
-		this.anvil = anvil;
+		this.slime = slime;
 	}
 	
 	@Override
 	public void run() 
 	{
-		if (!anvil.isDead())
+		if (!slime.isDead())
 		{
-			anvil.setVelocity(new Vector(0, -0.3, 0));
-			anvil.setPassenger(parachute.player);
+			slime.setVelocity(new Vector(0, -0.3, 0));
+			slime.setPassenger(parachute.player);
 			
-			if (anvil.isOnGround())
-			{
-				Parachute.parachutingArmorStands.remove(anvil);
-				anvil.remove();
-			}
+			if (slime.isOnGround())
+				slime.remove();
 		}
 		else
 			parachute.player.setVelocity(new Vector(0, -0.3, 0));
@@ -40,5 +38,5 @@ public class IronicParachuteTask extends ParachuteTask
 			Parachute.parachuting.remove(parachute.player);
 			Bukkit.getScheduler().cancelTask(this.id);
 		}
-	}	
+	}
 }

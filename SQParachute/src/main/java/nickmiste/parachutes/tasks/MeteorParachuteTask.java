@@ -28,21 +28,30 @@ public class MeteorParachuteTask extends ParachuteTask
 	@Override
 	public void run() 
 	{
-		meteor.setVelocity(new Vector(0, -0.3, 0));
-		meteor.setPassenger(parachute.player);
-		
-		meteor.setHeadPose(new EulerAngle(Math.abs(Math.sin(iteration)), iteration * 4, Math.PI / 8));
-		iteration += Math.PI / 90;
-		
-		parachute.player.getWorld().playSound(parachute.player.getLocation(), Sound.FIRE, 10, -10);
-		
-		if (this.meteor.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
-		{	
-			for (int i = 0; i < 10; i++)
-				parachute.player.getWorld().playEffect(parachute.player.getLocation(), Effect.EXPLOSION_HUGE, 0);
-			parachute.player.getWorld().playSound(parachute.player.getLocation(), Sound.EXPLODE, 20, 0);
-			meteor.remove();
-			Parachute.parachutingArmorStands.remove(meteor);
+		if (!meteor.isDead())
+		{
+			meteor.setVelocity(new Vector(0, -0.3, 0));
+			meteor.setPassenger(parachute.player);
+			
+			meteor.setHeadPose(new EulerAngle(Math.abs(Math.sin(iteration)), iteration * 4, Math.PI / 8));
+			iteration += Math.PI / 90;
+			
+			parachute.player.getWorld().playSound(parachute.player.getLocation(), Sound.FIRE, 10, -10);
+			
+			if (this.meteor.isOnGround())
+			{	
+				for (int i = 0; i < 10; i++)
+					parachute.player.getWorld().playEffect(parachute.player.getLocation(), Effect.EXPLOSION_HUGE, 0);
+				parachute.player.getWorld().playSound(parachute.player.getLocation(), Sound.EXPLODE, 20, 0);
+				meteor.remove();
+				Parachute.parachutingArmorStands.remove(meteor);
+			}
+		}
+		else
+			parachute.player.setVelocity(new Vector(0, -0.3, 0));
+	
+		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
+		{
 			Parachute.parachuting.remove(parachute.player);
 			Bukkit.getScheduler().cancelTask(this.id);
 		}

@@ -7,12 +7,12 @@ import nickmiste.parachutes.IronicParachute;
 import nickmiste.parachutes.MeteorParachute;
 import nickmiste.parachutes.RainbowParachute;
 import nickmiste.parachutes.SkydogParachute;
+import nickmiste.parachutes.SlimeParachute;
 import nickmiste.parachutes.SteampunkParachute;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -33,6 +33,7 @@ public class ParachuteSelector
 	private static final String IRONIC_PARACHUTE = ChatColor.DARK_GRAY + "Iron" + ChatColor.GRAY + "ic Parachute";
 	private static final String SKYDOG_PARACHUTE = ChatColor.DARK_RED + "Sky" + ChatColor.GRAY + "dog";
 	private static final String METEOR_PARACHUTE = ChatColor.RED + "" + ChatColor.BOLD + "Meteor";
+	private static final String SLIME_PARACHUTE = ChatColor.GREEN + "" + ChatColor.BOLD + "Slime Parachute";
 	
 	static
 	{
@@ -42,7 +43,7 @@ public class ParachuteSelector
 		addItem(3, Material.WOOD_BUTTON, 0, STEAMPUNK_PARACHUTE);
 		addItem(4, Material.ANVIL, 0, IRONIC_PARACHUTE);
 		addItem(5, Material.BONE, 0, SKYDOG_PARACHUTE);
-		addItem(6, Material.STAINED_GLASS_PANE, 0, " ");
+		addItem(6, Material.SLIME_BALL, 0,  SLIME_PARACHUTE);
 		addItem(7, Material.STAINED_GLASS_PANE, 0, " ");
 		addItem(8, Material.STAINED_GLASS_PANE, 0, " ");
 	}
@@ -94,6 +95,8 @@ public class ParachuteSelector
 				return new SkydogParachute(player);
 			else if (parachutes.get(player).equals(METEOR_PARACHUTE))
 				return new MeteorParachute(player);
+			else if (parachutes.get(player).equals(SLIME_PARACHUTE))
+				return new SlimeParachute(player);
 		return new DefaultParachute(player);
 	}
 	

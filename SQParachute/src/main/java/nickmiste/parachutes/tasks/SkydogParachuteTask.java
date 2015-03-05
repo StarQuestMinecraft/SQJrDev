@@ -31,19 +31,28 @@ public class SkydogParachuteTask extends ParachuteTask
 	@Override
 	public void run()
 	{
-		skydog.setVelocity(new Vector(0, -0.3, 0));
-		skydog.setPassenger(parachute.player);
+		if (!skydog.isDead())
+		{
+			skydog.setVelocity(new Vector(0, -0.3, 0));
+			skydog.setPassenger(parachute.player);
+			
+			if (skydog.isOnGround())
+			{
+				Parachute.parachutingArmorStands.remove(armorStand2);
+				Parachute.parachutingArmorStands.remove(armorStand2);
+				armorStand1.remove();
+				armorStand2.remove();
+				skydog.remove();
+				for (Slime slime : slimes)
+					slime.remove();
+			}
+		}
+		else
+			parachute.player.setVelocity(new Vector(0, -0.3, 0));
 		
-		if (skydog.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
+		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
 		{
 			Parachute.parachuting.remove(parachute.player);
-			Parachute.parachutingArmorStands.remove(armorStand2);
-			Parachute.parachutingArmorStands.remove(armorStand2);
-			armorStand1.remove();
-			armorStand2.remove();
-			skydog.remove();
-			for (Slime slime : slimes)
-				slime.remove();
 			Bukkit.getScheduler().cancelTask(this.id);
 		}
 	}
