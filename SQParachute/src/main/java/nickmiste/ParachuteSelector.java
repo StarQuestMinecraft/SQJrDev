@@ -20,7 +20,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ParachuteSelector 
 {
-	public static Inventory selector = Bukkit.createInventory(null, 9, ChatColor.BLACK + "Select a parachute:");
+	public static Inventory selector = Bukkit.createInventory(null, 9, ChatColor.BLUE + "Select a parachute:");
 	public static HashMap<Player, String> parachutes = new HashMap<Player, String>();
 	
 	private static final String RAINBOW_PARACHUTE = ChatColor.DARK_RED + "R" + ChatColor.RED + "a" + ChatColor.GOLD + "i" +
