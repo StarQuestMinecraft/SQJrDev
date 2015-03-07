@@ -50,7 +50,7 @@ public class SQInventoryScanner extends JavaPlugin implements Listener{
 	}
 	
 	private void setupConfig(){
-		//if there is not config, create one from the saved on in the jar
+		//if there is no config, creates one from the saved on in the jar
 		saveDefaultConfig();
 		
 		FileConfiguration config = getConfig();
