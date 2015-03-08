@@ -1,14 +1,7 @@
 package nickmiste;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-
-import nickmiste.parachutes.DefaultParachute;
-import nickmiste.parachutes.IronicParachute;
-import nickmiste.parachutes.MeteorParachute;
-import nickmiste.parachutes.RainbowParachute;
-import nickmiste.parachutes.SkydogParachute;
-import nickmiste.parachutes.SlimeParachute;
-import nickmiste.parachutes.SteampunkParachute;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,7 +13,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ParachuteSelector 
 {
-	public static Inventory selector = Bukkit.createInventory(null, 9, ChatColor.BLUE + "Select a parachute:");
+	//public static Inventory selector = Bukkit.createInventory(null, 9, ChatColor.BLUE + "Select a parachute:");
+	public static final String SELECTOR_NAME = ChatColor.BLUE + "Select a parachute:";
 	public static HashMap<Player, String> parachutes = new HashMap<Player, String>();
 	
 	public static final String RAINBOW_PARACHUTE = ChatColor.DARK_RED + "R" + ChatColor.RED + "a" + ChatColor.GOLD + "i" +
@@ -35,50 +29,60 @@ public class ParachuteSelector
 	public static final String METEOR_PARACHUTE = ChatColor.RED + "" + ChatColor.BOLD + "Meteor";
 	public static final String SLIME_PARACHUTE = ChatColor.GREEN + "" + ChatColor.BOLD + "Slime Parachute";
 	
+	private static final ArrayList<ItemStack> ITEMS = new ArrayList<ItemStack>();
+	
 	static
 	{
-		addItem(0, Material.FEATHER, 0, DEFAULT_PARACHUTE);
-		addItem(1, Material.GOLD_INGOT, 0, RAINBOW_PARACHUTE);
-		addItem(2, Material.NETHERRACK, 0, METEOR_PARACHUTE);
-		addItem(3, Material.WOOD_BUTTON, 0, STEAMPUNK_PARACHUTE);
-		addItem(4, Material.ANVIL, 0, IRONIC_PARACHUTE);
-		addItem(5, Material.BONE, 0, SKYDOG_PARACHUTE);
-		addItem(6, Material.SLIME_BALL, 0,  SLIME_PARACHUTE);
-		addItem(7, Material.STAINED_GLASS_PANE, 0, " ");
-		addItem(8, Material.STAINED_GLASS_PANE, 0, " ");
+		addItem(Material.FEATHER, 0, DEFAULT_PARACHUTE);
+		addItem(Material.GOLD_INGOT, 0, RAINBOW_PARACHUTE);
+		addItem(Material.NETHERRACK, 0, METEOR_PARACHUTE);
+		addItem(Material.WOOD_BUTTON, 0, STEAMPUNK_PARACHUTE);
+		addItem(Material.ANVIL, 0, IRONIC_PARACHUTE);
+		addItem(Material.BONE, 0, SKYDOG_PARACHUTE);
+		addItem(Material.SLIME_BALL, 0,  SLIME_PARACHUTE);
+		addItem(Material.STAINED_GLASS_PANE, 0, " ");
+		addItem(Material.STAINED_GLASS_PANE, 0, " ");
 	}
 	
-	private static void addItem(int slot, Material material, int damage, String name)
+	public static Inventory getSelector(Player player)
+	{
+		Inventory selector = Bukkit.createInventory(player, 9, SELECTOR_NAME);
+		
+		for (int i = 0; i < 7; i++)
+		{
+			if (player.hasPermission("sqparachute." + getStringWithoutFormatting(ITEMS.get(i).getItemMeta().getDisplayName())))
+				selector.setItem(selector.firstEmpty(), ITEMS.get(i));
+		}
+		return selector;
+	}
+	
+	private static void addItem(Material material, int damage, String name)
 	{
 		ItemStack stack = new ItemStack(material, 1, (short) damage);
 		ItemMeta meta = stack.getItemMeta();
 		meta.setDisplayName(name);
 		stack.setItemMeta(meta);
-		selector.setItem(slot, stack);
+		
+		ITEMS.add(stack);
 	}
 	
 	public static void setParachute(Player player, String parachute)
-	{	
-		if (player.hasPermission(getStringWithoutFormatting(parachute)))
-		{
-			if (parachutes.containsKey(player))
-				parachutes.remove(player);
-			if (!parachute.equals(DEFAULT_PARACHUTE))
-				parachutes.put(player, parachute);
-			player.sendMessage(parachute + ChatColor.RESET + " has been selected!");
-		}
-		else
-			player.sendMessage("Please donate for that parachute at http://starquestminecraft.buycraft.net/");
-
+	{
+		if (parachutes.containsKey(player))
+			parachutes.remove(player);
+		if (!parachute.equals(DEFAULT_PARACHUTE))
+			parachutes.put(player, parachute);
+		player.sendMessage(parachute + ChatColor.RESET + " has been selected!");
+		
 		player.closeInventory();
 	}
 	
 	private static String getStringWithoutFormatting(String parachute)
 	{
 		String str = "";
-		for (int i = 0; i < parachute.length(); i++)
-			if (parachute.charAt(i) != ChatColor.COLOR_CHAR && parachute.charAt(i - 1) != ChatColor.COLOR_CHAR)
+		for (int i = 1; i < parachute.length(); i++)
+			if (parachute.charAt(i) != ChatColor.COLOR_CHAR && parachute.charAt(i - 1) != ChatColor.COLOR_CHAR && parachute.charAt(i) != ' ')
 				str += parachute.charAt(i);
-		return str;
+		return str.toLowerCase();
 	}
 }

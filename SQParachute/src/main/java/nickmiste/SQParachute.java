@@ -85,7 +85,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event)
 	{
-		if (event.getInventory().getName().equals(ParachuteSelector.selector.getName()))
+		if (event.getInventory().getName().equals(ParachuteSelector.SELECTOR_NAME))
 		{
 			if (event.getCurrentItem().getItemMeta() != null)
 			{
@@ -117,7 +117,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 				System.out.println(Parachute.parachuting);
 			else
 			{
-				((Player) sender).openInventory(ParachuteSelector.selector);
+				((Player) sender).openInventory(ParachuteSelector.getSelector((Player) sender));
 				return true;
 			}
 		}
