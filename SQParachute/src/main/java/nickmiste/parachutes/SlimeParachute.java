@@ -14,9 +14,9 @@ public class SlimeParachute extends Parachute
 {
 	public Slime slime;
 	
-	public SlimeParachute(Player player) 
+	public SlimeParachute(Player player, boolean gliding) 
 	{
-		super(player);
+		super(player, gliding);
 		
 		slime = player.getWorld().spawn(player.getLocation(), Slime.class);
 		slime.setSize(5);

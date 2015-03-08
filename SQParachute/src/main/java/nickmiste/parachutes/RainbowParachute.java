@@ -13,9 +13,9 @@ import org.bukkit.util.EulerAngle;
 
 public class RainbowParachute extends Parachute
 {
-	public RainbowParachute(Player player) 
+	public RainbowParachute(Player player, boolean gliding) 
 	{
-		super(player);
+		super(player, gliding);
 
 		ItemStack stack = new ItemStack(Material.BANNER, 0, (short) 1);
 		

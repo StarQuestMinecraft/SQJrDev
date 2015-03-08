@@ -38,7 +38,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 			if (event.getAction().equals(Action.RIGHT_CLICK_AIR) && event.getPlayer().getItemInHand().getType().equals(Material.FEATHER) && 
 				!event.getPlayer().isOnGround() && !Parachute.parachuting.contains(event.getPlayer()))
 			{
-				Parachute.startParachuting(event.getPlayer());
+				Parachute.startParachuting(event.getPlayer(), false);
 				
 				if (event.getPlayer().getItemInHand().getAmount() > 1)
 					event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount() - 1);
@@ -48,7 +48,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 			else if (event.getAction().equals(Action.RIGHT_CLICK_AIR) && event.getPlayer().getItemInHand().getType().equals(Material.LEATHER) && 
 				!event.getPlayer().isOnGround() && !Parachute.parachuting.contains(event.getPlayer()))
 			{
-				Parachute.startGliding(event.getPlayer());
+				Parachute.startParachuting(event.getPlayer(), true);
 				
 				if (event.getPlayer().getItemInHand().getAmount() > 1)
 					event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount() - 1);
@@ -73,7 +73,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 		{
 			if (event.getCause().equals(DamageCause.FALL) && Parachute.parachuting.contains((Player) event.getEntity()))
 				event.setCancelled(true);
-			else if (event.getCause().equals(DamageCause.PROJECTILE) && HangGlider.gliding.contains((Player) event.getEntity()))
+			else if (event.getCause().equals(DamageCause.PROJECTILE) && Parachute.glidingPlayers.contains((Player) event.getEntity()))
 				Parachute.parachuting.remove((Player) event.getEntity());
 		}
 	}
@@ -110,7 +110,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 		if (cmd.getName().equalsIgnoreCase("parachute"))
 		{
 			if (!(sender instanceof Player))
-				sender.sendMessage("You are not a player!");
+				System.out.println(Parachute.parachuting);
 			else
 			{
 				((Player) sender).openInventory(ParachuteSelector.selector);

@@ -33,7 +33,8 @@ public class SteampunkParachuteTask extends ParachuteTask
 	@Override
 	public void run()
 	{
-		parachute.player.setVelocity(new Vector(0, -0.3, 0));
+		Vector direction = parachute.player.getLocation().getDirection();
+		parachute.player.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 		
 		armorStand1.setHeadPose(new EulerAngle(Math.sin(iteration) * (Math.PI / 6) - Math.PI / 2, parachute.player.getLocation().getYaw() * (Math.PI / 180) + Math.PI / 2, 0));
 		
@@ -44,6 +45,8 @@ public class SteampunkParachuteTask extends ParachuteTask
 		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
 		{
 			Parachute.parachuting.remove(parachute.player);
+			Parachute.glidingPlayers.remove(parachute.player);
+			Parachute.glidingPlayers.remove(parachute.player);
 			Parachute.parachutingArmorStands.remove(armorStand1);
 			Parachute.parachutingArmorStands.remove(armorStand2);
 			armorStand1.remove();

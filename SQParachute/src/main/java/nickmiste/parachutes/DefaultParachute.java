@@ -13,9 +13,9 @@ import org.bukkit.util.EulerAngle;
 
 public class DefaultParachute extends Parachute
 {	
-	public DefaultParachute(Player player)
+	public DefaultParachute(Player player, boolean gliding)
 	{
-		super(player);
+		super(player, gliding);
 		
 		short color = (short) (Math.random() * 15);
 		

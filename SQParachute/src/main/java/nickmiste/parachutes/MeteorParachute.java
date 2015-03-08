@@ -14,9 +14,9 @@ public class MeteorParachute extends Parachute
 {
 	public ArmorStand meteor;
 	
-	public MeteorParachute(Player player)
+	public MeteorParachute(Player player, boolean gliding)
 	{
-		super(player);
+		super(player, gliding);
 		
 		this.meteor = player.getWorld().spawn(loc, ArmorStand.class);
 		meteor.getEquipment().setHelmet(new ItemStack(Material.NETHERRACK, 0));

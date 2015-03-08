@@ -19,9 +19,9 @@ import org.bukkit.potion.PotionEffectType;
 
 public class SteampunkParachute extends Parachute
 {	
-	public SteampunkParachute(Player player)
+	public SteampunkParachute(Player player, boolean gliding)
 	{
-		super(player);
+		super(player, gliding);
 		
 		ItemStack stack = new ItemStack(Material.BANNER, 0);
 		BannerMeta meta = (BannerMeta) stack.getItemMeta();

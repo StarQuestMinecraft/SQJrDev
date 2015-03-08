@@ -21,9 +21,11 @@ public class IronicParachuteTask extends ParachuteTask
 	@Override
 	public void run() 
 	{
+		Vector direction = parachute.player.getLocation().getDirection();
+		
 		if (!anvil.isDead())
 		{
-			anvil.setVelocity(new Vector(0, -0.3, 0));
+			anvil.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 			anvil.setPassenger(parachute.player);
 			
 			if (anvil.isOnGround())
@@ -33,7 +35,7 @@ public class IronicParachuteTask extends ParachuteTask
 			}
 		}
 		else
-			parachute.player.setVelocity(new Vector(0, -0.3, 0));
+			parachute.player.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 		
 		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
 		{

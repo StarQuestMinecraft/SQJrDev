@@ -23,9 +23,9 @@ public class SkydogParachute extends Parachute
 {
 	public Wolf skydog;
 	
-	public SkydogParachute(Player player)
+	public SkydogParachute(Player player, boolean gliding)
 	{
-		super(player);
+		super(player, gliding);
 		
 		ArmorStand armorStand1 = player.getWorld().spawn(loc, ArmorStand.class);
 		ArmorStand armorStand2 = player.getWorld().spawn(loc, ArmorStand.class);

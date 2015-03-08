@@ -14,9 +14,9 @@ public class IronicParachute extends Parachute
 {
 	public ArmorStand anvil;
 	
-	public IronicParachute(Player player) 
+	public IronicParachute(Player player, boolean gliding) 
 	{
-		super(player);
+		super(player, gliding);
 		
 		anvil = player.getWorld().spawn(loc, ArmorStand.class);
 		anvil.getEquipment().setHelmet(new ItemStack(Material.ANVIL, 0));

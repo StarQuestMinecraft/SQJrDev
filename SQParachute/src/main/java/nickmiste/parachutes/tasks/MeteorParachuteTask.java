@@ -28,9 +28,11 @@ public class MeteorParachuteTask extends ParachuteTask
 	@Override
 	public void run() 
 	{
+		Vector direction = parachute.player.getLocation().getDirection();
+
 		if (!meteor.isDead())
 		{
-			meteor.setVelocity(new Vector(0, -0.3, 0));
+			meteor.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 			meteor.setPassenger(parachute.player);
 			
 			meteor.setHeadPose(new EulerAngle(Math.abs(Math.sin(iteration)), iteration * 4, Math.PI / 8));
@@ -48,11 +50,12 @@ public class MeteorParachuteTask extends ParachuteTask
 			}
 		}
 		else
-			parachute.player.setVelocity(new Vector(0, -0.3, 0));
+			parachute.player.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 	
 		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
 		{
 			Parachute.parachuting.remove(parachute.player);
+			Parachute.glidingPlayers.remove(parachute.player);
 			Bukkit.getScheduler().cancelTask(this.id);
 		}
 	}

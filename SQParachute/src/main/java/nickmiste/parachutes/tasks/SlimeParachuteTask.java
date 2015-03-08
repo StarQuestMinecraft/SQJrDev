@@ -21,21 +21,23 @@ public class SlimeParachuteTask extends ParachuteTask
 	
 	@Override
 	public void run() 
-	{
+	{	
+		Vector direction = parachute.player.getLocation().getDirection();
+	
 		if (!slime.isDead())
 		{
-			slime.setVelocity(new Vector(0, -0.3, 0));
-			slime.setPassenger(parachute.player);
+			slime.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 			
 			if (slime.isOnGround())
 				slime.remove();
 		}
 		else
-			parachute.player.setVelocity(new Vector(0, -0.3, 0));
+			parachute.player.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 		
 		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
 		{
 			Parachute.parachuting.remove(parachute.player);
+			Parachute.glidingPlayers.remove(parachute.player);
 			Bukkit.getScheduler().cancelTask(this.id);
 		}
 	}

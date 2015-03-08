@@ -1,6 +1,5 @@
 package nickmiste.parachutes.tasks;
 
-import nickmiste.HangGlider;
 import nickmiste.Parachute;
 import nickmiste.ParachuteTask;
 
@@ -37,7 +36,8 @@ public class DefaultParachuteTask extends ParachuteTask
 	@Override
 	public void run()
 	{
-		parachute.player.setVelocity(new Vector(0, -0.3, 0));
+		Vector direction = parachute.player.getLocation().getDirection();
+		parachute.player.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 		
 		armorStand1.teleport(new Location(this.armorStand1.getWorld(),
 										  this.armorStand1.getLocation().getX() - (lastX - parachute.player.getLocation().getX()),
@@ -61,6 +61,7 @@ public class DefaultParachuteTask extends ParachuteTask
 		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
 		{
 			Parachute.parachuting.remove(parachute.player);
+			Parachute.glidingPlayers.remove(parachute.player);
 			Parachute.parachutingArmorStands.remove(armorStand1);
 			Parachute.parachutingArmorStands.remove(armorStand2);
 			Parachute.parachutingArmorStands.remove(armorStand3);
