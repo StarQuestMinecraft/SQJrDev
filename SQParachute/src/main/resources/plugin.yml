@@ -4,7 +4,10 @@ version: 1.0
 permissions:
    sqparachute.use:
       description: Allows the player to use parachutes
-      default: op
+      default: true
+   sqparachute.useglider:
+      description: Allows the player to use hang gliders
+      default: true
 commands:
    parachute:
       description: Change your parachute
