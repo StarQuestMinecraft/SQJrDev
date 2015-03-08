@@ -23,17 +23,17 @@ public class ParachuteSelector
 	public static Inventory selector = Bukkit.createInventory(null, 9, ChatColor.BLUE + "Select a parachute:");
 	public static HashMap<Player, String> parachutes = new HashMap<Player, String>();
 	
-	private static final String RAINBOW_PARACHUTE = ChatColor.DARK_RED + "R" + ChatColor.RED + "a" + ChatColor.GOLD + "i" +
+	public static final String RAINBOW_PARACHUTE = ChatColor.DARK_RED + "R" + ChatColor.RED + "a" + ChatColor.GOLD + "i" +
 			ChatColor.YELLOW + "n" + ChatColor.DARK_GREEN + "b" + ChatColor.GREEN + "o" + ChatColor.AQUA + "w" +
 			ChatColor.DARK_AQUA + " P" + ChatColor.BLUE + "a" + ChatColor.DARK_BLUE+ "r" + ChatColor.LIGHT_PURPLE + "a" +
 			ChatColor.DARK_PURPLE + "c" + ChatColor.DARK_RED + "h" + ChatColor.RED + "u" + ChatColor.GOLD + "t" +
 			ChatColor.YELLOW + "e";
-	private static final String DEFAULT_PARACHUTE = ChatColor.GRAY + "Default Parachute";
-	private static final String STEAMPUNK_PARACHUTE = ChatColor.DARK_GRAY + "Steam" + ChatColor.GOLD + "punk" + ChatColor.DARK_GRAY + " Parachute";
-	private static final String IRONIC_PARACHUTE = ChatColor.DARK_GRAY + "Iron" + ChatColor.GRAY + "ic Parachute";
-	private static final String SKYDOG_PARACHUTE = ChatColor.DARK_RED + "Sky" + ChatColor.GRAY + "dog";
-	private static final String METEOR_PARACHUTE = ChatColor.RED + "" + ChatColor.BOLD + "Meteor";
-	private static final String SLIME_PARACHUTE = ChatColor.GREEN + "" + ChatColor.BOLD + "Slime Parachute";
+	public static final String DEFAULT_PARACHUTE = ChatColor.GRAY + "Default Parachute";
+	public static final String STEAMPUNK_PARACHUTE = ChatColor.DARK_GRAY + "Steam" + ChatColor.GOLD + "punk" + ChatColor.DARK_GRAY + " Parachute";
+	public static final String IRONIC_PARACHUTE = ChatColor.DARK_GRAY + "Iron" + ChatColor.GRAY + "ic Parachute";
+	public static final String SKYDOG_PARACHUTE = ChatColor.DARK_RED + "Sky" + ChatColor.GRAY + "dog";
+	public static final String METEOR_PARACHUTE = ChatColor.RED + "" + ChatColor.BOLD + "Meteor";
+	public static final String SLIME_PARACHUTE = ChatColor.GREEN + "" + ChatColor.BOLD + "Slime Parachute";
 	
 	static
 	{
@@ -80,28 +80,5 @@ public class ParachuteSelector
 			if (parachute.charAt(i) != ChatColor.COLOR_CHAR && parachute.charAt(i - 1) != ChatColor.COLOR_CHAR)
 				str += parachute.charAt(i);
 		return str;
-	}
-	
-	public static Parachute startParachuting(Player player)
-	{
-		if (parachutes.containsKey(player))
-			if (parachutes.get(player).equals(RAINBOW_PARACHUTE))
-				return new RainbowParachute(player);
-			else if (parachutes.get(player).equals(STEAMPUNK_PARACHUTE))
-				return new SteampunkParachute(player);
-			else if (parachutes.get(player).equals(IRONIC_PARACHUTE))
-				return new IronicParachute(player);
-			else if (parachutes.get(player).equals(SKYDOG_PARACHUTE))
-				return new SkydogParachute(player);
-			else if (parachutes.get(player).equals(METEOR_PARACHUTE))
-				return new MeteorParachute(player);
-			else if (parachutes.get(player).equals(SLIME_PARACHUTE))
-				return new SlimeParachute(player);
-		return new DefaultParachute(player);
-	}
-	
-	public static void startGliding(Player player)
-	{
-		new HangGlider(startParachuting(player));
 	}
 }

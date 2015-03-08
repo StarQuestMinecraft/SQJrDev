@@ -38,7 +38,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 			if (event.getAction().equals(Action.RIGHT_CLICK_AIR) && event.getPlayer().getItemInHand().getType().equals(Material.FEATHER) && 
 				!event.getPlayer().isOnGround() && !Parachute.parachuting.contains(event.getPlayer()))
 			{
-				ParachuteSelector.startParachuting(event.getPlayer());
+				Parachute.startParachuting(event.getPlayer());
 				
 				if (event.getPlayer().getItemInHand().getAmount() > 1)
 					event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount() - 1);
@@ -48,7 +48,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 			else if (event.getAction().equals(Action.RIGHT_CLICK_AIR) && event.getPlayer().getItemInHand().getType().equals(Material.LEATHER) && 
 				!event.getPlayer().isOnGround() && !Parachute.parachuting.contains(event.getPlayer()))
 			{
-				ParachuteSelector.startGliding(event.getPlayer());
+				Parachute.startGliding(event.getPlayer());
 				
 				if (event.getPlayer().getItemInHand().getAmount() > 1)
 					event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount() - 1);
