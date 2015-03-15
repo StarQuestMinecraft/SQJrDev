@@ -1,0 +1,42 @@
+Objective:
+	To replace the old parachute plugin
+	To provide a way for players to negate fall damage
+	To provide a source of income for the server
+Gameplay Design Decisions:
+	Players right click with a feather to use a parachute
+		Shows a visual parachute above the player
+		The player glides down at a velocity of 0.3	
+	Players right click with leather to use a hang glider
+		Shows a visual parachute above the player that takes the form of the parachute
+		The player glides down with a velocity of 0.3 and a horizontal velocity that depends on the direction the player is facing
+		Being shot with an arrow boots the player from the hang glider (only gliders, not parachute)
+	The feather/leather is consumed
+Technical Design Decisions:
+	Abstract Classes:
+		Parachute:
+			All parachutes extend this class
+			Stores the player and its location
+			Stores the boolean that determines if the player is gliding
+			Stores ArrayLists of parachuting players, parachuting armor stands (to cancel interact events), and gliding players
+			The ONLY reasons the player should be removed from these ArrayLists are if the player is shot with an arrow, or the runnable removes the player
+			Contains the static method startParachuting()
+		ParachuteTask:
+			All parachute tasks extend this class
+			Implements Runnable
+			Stores the runnable id to be cancelled later
+	Specific Parachutes:
+		Parachutes:
+			Sets up the parachute's entities and anything else that needs to be set up in the constructor
+			Instantiates the task for the parachute
+		Parachute Tasks:
+			Sets the entities passed into the constructor as fields
+			The run() method sets the player's velocity, positions the entities, and cancels the task when the player should be done parachuting
+			The player should be done parachuting when the player is on the ground, logs out, or the parachuting ArrayList no longer contains the player
+	Other Classes:
+		SQParachute:
+			Main class and listener for Bukkit events
+		ParachuteSelector:
+			GUI for parachutes
+			Contains final Strings for parachute names
+			Contains a method that gets permission named from said Strings
+			Contains the method that sets the player's parachute
