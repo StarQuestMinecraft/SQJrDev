@@ -32,7 +32,9 @@ public abstract class Parachute
 		this.gliding = gliding;
 		
 		parachuting.add(player);
-		glidingPlayers.add(player);
+		
+		if (gliding)
+			glidingPlayers.add(player);
 	}
 	
 	public static Parachute startParachuting(Player player, boolean gliding)
