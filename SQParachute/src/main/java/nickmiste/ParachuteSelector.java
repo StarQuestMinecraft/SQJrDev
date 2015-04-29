@@ -66,15 +66,29 @@ public class ParachuteSelector
 		ITEMS.add(stack);
 	}
 	
-	public static void setParachute(Player player, String parachute)
+	public static void setParachuteWithGUI(Player player, String str)
 	{
 		if (parachutes.containsKey(player))
 			parachutes.remove(player);
-		if (!parachute.equals(DEFAULT_PARACHUTE))
-			parachutes.put(player, parachute);
-		player.sendMessage(parachute + ChatColor.RESET + " has been selected!");
+		if (!str.equals(DEFAULT_PARACHUTE))
+			parachutes.put(player, str);
+		player.sendMessage(str + ChatColor.RESET + " has been selected!");
 		
 		player.closeInventory();
+		
+		Bukkit.dispatchCommand(player.getServer().getConsoleSender(), "sync console all parachute " + player.toString() + " " + str);
+	}
+	
+	public static void setParachuteWithCommand(Player player, String str)
+	{
+		if (parachutes.containsKey(player))
+			parachutes.remove(player);
+		
+		Bukkit.broadcastMessage(str);
+		if (str.equals(getStringWithoutFormatting(DEFAULT_PARACHUTE)))
+			parachutes.remove(player);
+		else
+			parachutes.put(player, str);
 	}
 	
 	private static String getStringWithoutFormatting(String parachute)
