@@ -1,5 +1,8 @@
 package nickmiste;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -15,7 +18,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerKickEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,12 +31,25 @@ public final class SQParachute extends JavaPlugin implements Listener
 	{
 		instance = this;
 		Bukkit.getPluginManager().registerEvents(this, this);
+		
+		HashMap<String, Object> configParachutes = new HashMap<String, Object>(this.getConfig().getConfigurationSection("parachutes").getValues(false));
+		HashMap<UUID, String> parachutes = new HashMap<UUID, String>();
+		
+		for (String str : configParachutes.keySet())
+			parachutes.put(UUID.fromString(str), (String) configParachutes.get(str));
+		ParachuteSelector.parachutes = parachutes;
 	}
 	
 	@Override
 	public void onDisable()
 	{
+		HashMap<String, String> modifiedParachutes = new HashMap<String, String>();
 		
+		for (UUID uuid : ParachuteSelector.parachutes.keySet())
+			modifiedParachutes.put(uuid.toString(), ParachuteSelector.parachutes.get(uuid));
+		
+		this.getConfig().createSection("parachutes", modifiedParachutes);
+		this.saveConfig();
 	}
 	
 	@EventHandler
