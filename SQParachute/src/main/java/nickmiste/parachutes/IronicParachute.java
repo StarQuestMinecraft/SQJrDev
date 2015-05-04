@@ -25,7 +25,7 @@ public class IronicParachute extends Parachute
 		
 		anvil.setPassenger(player);
 		
-		player.getWorld().playSound(player.getLocation(), Sound.ANVIL_USE, 20, 0);
+		player.getWorld().playSound(player.getLocation(), Sound.ANVIL_USE, 20, 1);
 		
 		IronicParachuteTask task = new IronicParachuteTask(this, anvil);
 		int id = Bukkit.getScheduler().scheduleSyncRepeatingTask(SQParachute.getInstance(), task, 1, 1);

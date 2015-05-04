@@ -2,6 +2,7 @@ package nickmiste;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -13,9 +14,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ParachuteSelector 
 {
-	//public static Inventory selector = Bukkit.createInventory(null, 9, ChatColor.BLUE + "Select a parachute:");
 	public static final String SELECTOR_NAME = ChatColor.BLUE + "Select a parachute:";
-	public static HashMap<Player, String> parachutes = new HashMap<Player, String>();
+	
+	public static HashMap<UUID, String> parachutes = new HashMap<UUID, String>();
 	
 	public static final String RAINBOW_PARACHUTE = ChatColor.DARK_RED + "R" + ChatColor.RED + "a" + ChatColor.GOLD + "i" +
 			ChatColor.YELLOW + "n" + ChatColor.DARK_GREEN + "b" + ChatColor.GREEN + "o" + ChatColor.AQUA + "w" +
@@ -40,8 +41,6 @@ public class ParachuteSelector
 		addItem(Material.ANVIL, 0, IRONIC_PARACHUTE);
 		addItem(Material.BONE, 0, SKYDOG_PARACHUTE);
 		addItem(Material.SLIME_BALL, 0,  SLIME_PARACHUTE);
-		addItem(Material.STAINED_GLASS_PANE, 0, " ");
-		addItem(Material.STAINED_GLASS_PANE, 0, " ");
 	}
 	
 	public static Inventory getSelector(Player player)
@@ -53,6 +52,15 @@ public class ParachuteSelector
 			if (player.hasPermission("sqparachute." + getStringWithoutFormatting(ITEMS.get(i).getItemMeta().getDisplayName())))
 				selector.setItem(selector.firstEmpty(), ITEMS.get(i));
 		}
+		
+		ItemStack stack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 0);
+		ItemMeta meta = stack.getItemMeta();
+		meta.setDisplayName(" ");
+		stack.setItemMeta(meta);
+		
+		while(selector.firstEmpty() != -1)
+			selector.setItem(selector.firstEmpty(), stack);
+		
 		return selector;
 	}
 	
@@ -71,12 +79,14 @@ public class ParachuteSelector
 		if (parachutes.containsKey(player))
 			parachutes.remove(player);
 		if (!str.equals(DEFAULT_PARACHUTE))
-			parachutes.put(player, str);
+			parachutes.put(player.getUniqueId(), str);
 		player.sendMessage(str + ChatColor.RESET + " has been selected!");
 		
 		player.closeInventory();
 		
 		Bukkit.dispatchCommand(player.getServer().getConsoleSender(), "sync console all parachute " + player.toString() + " " + str);
+		
+		updateScoreboard(player, str);
 	}
 	
 	public static void setParachuteWithCommand(Player player, String str)
@@ -88,7 +98,22 @@ public class ParachuteSelector
 		if (str.equals(getStringWithoutFormatting(DEFAULT_PARACHUTE)))
 			parachutes.remove(player);
 		else
-			parachutes.put(player, str);
+			parachutes.put(player.getUniqueId(), str);
+		
+		updateScoreboard(player, str);
+	}
+	
+	private static void updateScoreboard(Player player, String parachute)
+	{
+		Bukkit.getScoreboardManager().getMainScoreboard().getObjective("parachutes").getScore(player).setScore(getParachuteId(parachute));
+	}
+	
+	private static int getParachuteId(String parachute)
+	{
+		for (int i = 0; i < ITEMS.size(); i++)
+			if (parachute == ITEMS.get(i).getItemMeta().getDisplayName())
+				return i;
+		return 0; //Fallback to default parachute in case of an error
 	}
 	
 	private static String getStringWithoutFormatting(String parachute)

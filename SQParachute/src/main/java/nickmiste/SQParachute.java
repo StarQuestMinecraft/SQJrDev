@@ -15,13 +15,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerKickEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.messaging.PluginMessageListener;
-
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteStreams;
 
 public final class SQParachute extends JavaPlugin implements Listener
 {
@@ -32,6 +29,12 @@ public final class SQParachute extends JavaPlugin implements Listener
 	{
 		instance = this;
 		Bukkit.getPluginManager().registerEvents(this, this);
+	}
+	
+	@Override
+	public void onDisable()
+	{
+		
 	}
 	
 	@EventHandler
@@ -91,11 +94,14 @@ public final class SQParachute extends JavaPlugin implements Listener
 	{
 		if (event.getInventory().getName().equals(ParachuteSelector.SELECTOR_NAME))
 		{
-			if (event.getCurrentItem().getItemMeta() != null) 
+			if (event.getCurrentItem() != null)
 			{
-				if (event.getCurrentItem().getItemMeta().getDisplayName() != " ")
-					ParachuteSelector.setParachuteWithGUI((Player) event.getWhoClicked(), event.getCurrentItem().getItemMeta().getDisplayName());
-				event.setCancelled(true);
+				if (event.getCurrentItem().getItemMeta() != null) 
+				{
+					if (event.getCurrentItem().getItemMeta().getDisplayName() != " ")
+						ParachuteSelector.setParachuteWithGUI((Player) event.getWhoClicked(), event.getCurrentItem().getItemMeta().getDisplayName());
+					event.setCancelled(true);
+				}
 			}
 		}
 	}

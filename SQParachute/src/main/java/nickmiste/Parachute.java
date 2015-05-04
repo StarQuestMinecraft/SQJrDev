@@ -39,18 +39,18 @@ public abstract class Parachute
 	
 	public static Parachute startParachuting(Player player, boolean gliding)
 	{
-		if (ParachuteSelector.parachutes.containsKey(player))
-			if (ParachuteSelector.parachutes.get(player).equals(ParachuteSelector.RAINBOW_PARACHUTE))
+		if (ParachuteSelector.parachutes.containsKey(player.getUniqueId()))
+			if (ParachuteSelector.parachutes.get(player.getUniqueId()).equals(ParachuteSelector.RAINBOW_PARACHUTE))
 				return new RainbowParachute(player, gliding);
-			else if (ParachuteSelector.parachutes.get(player).equals(ParachuteSelector.STEAMPUNK_PARACHUTE))
+			else if (ParachuteSelector.parachutes.get(player.getUniqueId()).equals(ParachuteSelector.STEAMPUNK_PARACHUTE))
 				return new SteampunkParachute(player, gliding);
-			else if (ParachuteSelector.parachutes.get(player).equals(ParachuteSelector.IRONIC_PARACHUTE))
+			else if (ParachuteSelector.parachutes.get(player.getUniqueId()).equals(ParachuteSelector.IRONIC_PARACHUTE))
 				return new IronicParachute(player, gliding);
-			else if (ParachuteSelector.parachutes.get(player).equals(ParachuteSelector.SKYDOG_PARACHUTE))
+			else if (ParachuteSelector.parachutes.get(player.getUniqueId()).equals(ParachuteSelector.SKYDOG_PARACHUTE))
 				return new SkydogParachute(player, gliding);
-			else if (ParachuteSelector.parachutes.get(player).equals(ParachuteSelector.METEOR_PARACHUTE))
+			else if (ParachuteSelector.parachutes.get(player.getUniqueId()).equals(ParachuteSelector.METEOR_PARACHUTE))
 				return new MeteorParachute(player, gliding);
-			else if (ParachuteSelector.parachutes.get(player).equals(ParachuteSelector.SLIME_PARACHUTE))
+			else if (ParachuteSelector.parachutes.get(player.getUniqueId()).equals(ParachuteSelector.SLIME_PARACHUTE))
 				return new SlimeParachute(player, gliding);
 		return new DefaultParachute(player, gliding);
 	}
