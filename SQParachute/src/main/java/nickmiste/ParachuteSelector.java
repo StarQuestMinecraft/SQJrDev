@@ -85,8 +85,6 @@ public class ParachuteSelector
 		player.closeInventory();
 		
 		Bukkit.dispatchCommand(player.getServer().getConsoleSender(), "sync console all parachute " + player.toString() + " " + str);
-		
-		updateScoreboard(player, str);
 	}
 	
 	public static void setParachuteWithCommand(Player player, String str)
@@ -99,13 +97,6 @@ public class ParachuteSelector
 			parachutes.remove(player);
 		else
 			parachutes.put(player.getUniqueId(), str);
-		
-		updateScoreboard(player, str);
-	}
-	
-	private static void updateScoreboard(Player player, String parachute)
-	{
-		Bukkit.getScoreboardManager().getMainScoreboard().getObjective("parachutes").getScore(player).setScore(getParachuteId(parachute));
 	}
 	
 	private static int getParachuteId(String parachute)
