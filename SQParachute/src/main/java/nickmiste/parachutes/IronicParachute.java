@@ -6,6 +6,7 @@ import nickmiste.parachutes.tasks.IronicParachuteTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -23,6 +24,8 @@ public class IronicParachute extends Parachute
 		anvil.setVisible(false);
 		
 		anvil.setPassenger(player);
+		
+		player.getWorld().playSound(player.getLocation(), Sound.ANVIL_USE, 20, 0);
 		
 		IronicParachuteTask task = new IronicParachuteTask(this, anvil);
 		int id = Bukkit.getScheduler().scheduleSyncRepeatingTask(SQParachute.getInstance(), task, 1, 1);

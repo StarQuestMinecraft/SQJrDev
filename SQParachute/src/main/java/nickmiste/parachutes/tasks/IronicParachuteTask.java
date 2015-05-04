@@ -4,6 +4,7 @@ import nickmiste.Parachute;
 import nickmiste.ParachuteTask;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.util.Vector;
 
@@ -30,6 +31,7 @@ public class IronicParachuteTask extends ParachuteTask
 			
 			if (anvil.isOnGround())
 			{
+				parachute.player.getWorld().playSound(parachute.player.getLocation(), Sound.ANVIL_LAND, 20, 0);
 				Parachute.parachutingArmorStands.remove(anvil);
 				anvil.remove();
 			}
