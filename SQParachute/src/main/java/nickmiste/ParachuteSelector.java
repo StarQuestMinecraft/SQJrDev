@@ -49,7 +49,7 @@ public class ParachuteSelector
 		
 		for (int i = 0; i < 7; i++)
 		{
-			if (player.hasPermission("sqparachute." + getStringWithoutFormatting(ITEMS.get(i).getItemMeta().getDisplayName())))
+			if (player.hasPermission("sqparachute." + getStringWithoutFormatting(ITEMS.get(i).getItemMeta().getDisplayName())) || ITEMS.get(i).getItemMeta().getDisplayName().equals(DEFAULT_PARACHUTE))
 				selector.setItem(selector.firstEmpty(), ITEMS.get(i));
 		}
 		
@@ -84,7 +84,7 @@ public class ParachuteSelector
 		
 		player.closeInventory();
 		
-		Bukkit.dispatchCommand(player.getServer().getConsoleSender(), "sync console all parachute " + player.toString() + " " + str);
+		Bukkit.dispatchCommand(player.getServer().getConsoleSender(), "sync console all parachute " + player.getName() + " " + str);
 	}
 	
 	public static void setParachuteWithCommand(Player player, String str)
@@ -92,7 +92,6 @@ public class ParachuteSelector
 		if (parachutes.containsKey(player))
 			parachutes.remove(player);
 		
-		Bukkit.broadcastMessage(str);
 		if (str.equals(getStringWithoutFormatting(DEFAULT_PARACHUTE)))
 			parachutes.remove(player);
 		else
