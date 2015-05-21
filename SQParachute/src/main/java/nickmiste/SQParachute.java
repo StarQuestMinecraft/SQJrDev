@@ -55,31 +55,34 @@ public final class SQParachute extends JavaPlugin implements Listener
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event)
 	{
-		if (event.getPlayer().hasPermission("sqparachute.use"))
+		if (!event.getPlayer().getWorld().getName().equals("Regalis") && !event.getPlayer().getWorld().getName().equals("Digitalia") && !event.getPlayer().getWorld().getName().equals("Defalos"))
 		{
-			if (event.getAction().equals(Action.RIGHT_CLICK_AIR) && event.getPlayer().getItemInHand().getType().equals(Material.FEATHER) && 
-				!event.getPlayer().isOnGround() && !Parachute.parachuting.contains(event.getPlayer()))
+			if (event.getPlayer().hasPermission("sqparachute.use"))
 			{
-				Parachute.startParachuting(event.getPlayer(), false);
-				
-				if (event.getPlayer().getItemInHand().getAmount() > 1)
-					event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount() - 1);
-				else
-					event.getPlayer().setItemInHand(new ItemStack(Material.AIR));
-			}
-		}
-		
-		if (event.getPlayer().hasPermission("sqparachute.useglider"))
-		{
-			if (event.getAction().equals(Action.RIGHT_CLICK_AIR) && event.getPlayer().getItemInHand().getType().equals(Material.LEATHER) && 
+				if (event.getAction().equals(Action.RIGHT_CLICK_AIR) && event.getPlayer().getItemInHand().getType().equals(Material.FEATHER) && 
 					!event.getPlayer().isOnGround() && !Parachute.parachuting.contains(event.getPlayer()))
+				{
+					Parachute.startParachuting(event.getPlayer(), false);
+					
+					if (event.getPlayer().getItemInHand().getAmount() > 1)
+						event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount() - 1);
+					else
+						event.getPlayer().setItemInHand(new ItemStack(Material.AIR));
+				}
+			}
+			
+			if (event.getPlayer().hasPermission("sqparachute.useglider"))
 			{
-				Parachute.startParachuting(event.getPlayer(), true);
-				
-				if (event.getPlayer().getItemInHand().getAmount() > 1)
-					event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount() - 1);
-				else
-					event.getPlayer().setItemInHand(new ItemStack(Material.AIR));
+				if (event.getAction().equals(Action.RIGHT_CLICK_AIR) && event.getPlayer().getItemInHand().getType().equals(Material.LEATHER) && 
+						!event.getPlayer().isOnGround() && !Parachute.parachuting.contains(event.getPlayer()))
+				{
+					Parachute.startParachuting(event.getPlayer(), true);
+					
+					if (event.getPlayer().getItemInHand().getAmount() > 1)
+						event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount() - 1);
+					else
+						event.getPlayer().setItemInHand(new ItemStack(Material.AIR));
+				}
 			}
 		}
 	}
@@ -90,18 +93,6 @@ public final class SQParachute extends JavaPlugin implements Listener
 		if (event.getRightClicked() instanceof ArmorStand)
 			if (Parachute.parachutingArmorStands.contains((ArmorStand) event.getRightClicked()))
 				event.setCancelled(true);
-	}
-	
-	@EventHandler
-	public void onDamageTaken(EntityDamageEvent event)
-	{
-		if (event.getEntity() instanceof Player)
-		{
-			if (event.getCause().equals(DamageCause.FALL) && Parachute.parachuting.contains((Player) event.getEntity()))
-				event.setCancelled(true);
-			else if (event.getCause().equals(DamageCause.PROJECTILE) && Parachute.glidingPlayers.contains((Player) event.getEntity()))
-				Parachute.parachuting.remove((Player) event.getEntity());
-		}
 	}
 	
 	@EventHandler

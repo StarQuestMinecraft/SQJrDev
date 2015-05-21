@@ -5,6 +5,7 @@ import nickmiste.ParachuteTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.util.Vector;
 
@@ -58,7 +59,7 @@ public class DefaultParachuteTask extends ParachuteTask
 		this.lastY = parachute.player.getLocation().getY();
 		this.lastZ = parachute.player.getLocation().getZ();
 		
-		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
+		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid())
 		{
 			Parachute.parachuting.remove(parachute.player);
 			Parachute.glidingPlayers.remove(parachute.player);

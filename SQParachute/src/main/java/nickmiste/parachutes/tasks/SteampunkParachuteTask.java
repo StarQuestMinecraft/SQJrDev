@@ -42,7 +42,7 @@ public class SteampunkParachuteTask extends ParachuteTask
 		
 		iteration += 0.1;
 		
-		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
+		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid())
 		{
 			Parachute.parachuting.remove(parachute.player);
 			Parachute.glidingPlayers.remove(parachute.player);

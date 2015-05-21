@@ -76,34 +76,26 @@ public class ParachuteSelector
 	
 	public static void setParachuteWithGUI(Player player, String str)
 	{
-		if (parachutes.containsKey(player))
-			parachutes.remove(player);
+		if (parachutes.containsKey(player.getUniqueId()))
+			parachutes.remove(player.getUniqueId());
 		if (!str.equals(DEFAULT_PARACHUTE))
 			parachutes.put(player.getUniqueId(), str);
 		player.sendMessage(str + ChatColor.RESET + " has been selected!");
 		
 		player.closeInventory();
 		
-		Bukkit.dispatchCommand(player.getServer().getConsoleSender(), "sync console all parachute " + player.getName() + " " + str);
+		Bukkit.dispatchCommand(player.getServer().getConsoleSender(), "sync console all parachute " + player.getName() + " " + str.replaceAll(" ", "%"));
 	}
 	
 	public static void setParachuteWithCommand(Player player, String str)
 	{
-		if (parachutes.containsKey(player))
-			parachutes.remove(player);
+		if (parachutes.containsKey(player.getUniqueId()))
+			parachutes.remove(player.getUniqueId());
 		
-		if (str.equals(getStringWithoutFormatting(DEFAULT_PARACHUTE)))
-			parachutes.remove(player);
+		if (str.replaceAll("%", " ").equals(getStringWithoutFormatting(DEFAULT_PARACHUTE)))
+			parachutes.remove(player.getUniqueId());
 		else
-			parachutes.put(player.getUniqueId(), str);
-	}
-	
-	private static int getParachuteId(String parachute)
-	{
-		for (int i = 0; i < ITEMS.size(); i++)
-			if (parachute == ITEMS.get(i).getItemMeta().getDisplayName())
-				return i;
-		return 0; //Fallback to default parachute in case of an error
+			parachutes.put(player.getUniqueId(), str.replaceAll("%", " "));
 	}
 	
 	private static String getStringWithoutFormatting(String parachute)

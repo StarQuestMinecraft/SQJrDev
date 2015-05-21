@@ -38,7 +38,7 @@ public class SkydogParachuteTask extends ParachuteTask
 			skydog.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 			skydog.setPassenger(parachute.player);
 			
-			if (skydog.isOnGround())
+			if (skydog.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid())
 			{
 				Parachute.parachutingArmorStands.remove(armorStand2);
 				Parachute.parachutingArmorStands.remove(armorStand2);
@@ -52,7 +52,7 @@ public class SkydogParachuteTask extends ParachuteTask
 		else
 			parachute.player.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 		
-		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || !Parachute.parachuting.contains(parachute.player))
+		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid())
 		{
 			Parachute.parachuting.remove(parachute.player);
 			Parachute.glidingPlayers.remove(parachute.player);
