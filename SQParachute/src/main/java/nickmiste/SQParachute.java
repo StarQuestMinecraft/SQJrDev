@@ -88,6 +88,18 @@ public final class SQParachute extends JavaPlugin implements Listener
 	}
 	
 	@EventHandler
+	public void onDamageTaken(EntityDamageEvent event)
+	{
+		if (event.getEntity() instanceof Player)
+		{
+			if (event.getCause().equals(DamageCause.FALL) && Parachute.parachuting.contains((Player) event.getEntity()))
+				event.setCancelled(true);
+			else if (event.getCause().equals(DamageCause.PROJECTILE) && Parachute.glidingPlayers.contains((Player) event.getEntity()))
+				Parachute.parachuting.remove((Player) event.getEntity());
+		}
+	}
+	
+	@EventHandler
 	public void onPlayerInteractEntity(PlayerInteractAtEntityEvent event)
 	{
 		if (event.getRightClicked() instanceof ArmorStand)
