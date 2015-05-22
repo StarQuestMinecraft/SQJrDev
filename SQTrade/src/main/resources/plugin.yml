@@ -1,0 +1,10 @@
+name: SQTrade
+main: nickmiste.SQTrade
+version: 1.0
+commands:
+   tradepost:
+      description: Various tradehub commands
+permissions:
+   sqtrade.admin:
+      description: Allows the player to use /tradepost admin
+      default: op

@@ -1,0 +1,92 @@
+Objective:
+	To encourage player-player trade
+Gameplay Design Decisions:
+	The Basic Process:
+		The player builds a multiblock structure called a trade hub and binds it to him/herself
+		The player can run a command (/tradehub) from anywhere in the game to search buy/sell orders
+		Players can complete (or partially complete) orders of other players
+	The Trade Hub:
+		The trade hub is a multiblock structure that has the following items:
+			An emerald block and possibly other filler blocks
+			An output chest
+			An input chest
+			A button for placing buy orders
+			A sign for linking the trade hub to oneself
+	Placing a Buy Order:
+		To place a buy order, press the button that's part of your trade hub, search for the item that you want to buy, and select the amount you wish to buy EACH INDIVIDUAL UNIT for (using clickable chat)
+		You also select the quantity of items you wish to buy (using clickable chat)
+		Your credits are taken up front
+		There is additionally an option to remotely press the buy button using /tradehub
+	Placing a Sell Order:
+		To place a sell order, open the chest that's part of your trade hub, put in the items that you want to sell, and select the amount you wish to sell EACH INDIVIDUAL UNIT for (using clickable chat)
+		The items disappear and are "stored" inside the trade hub
+		There is NOT an option to remotely open the sell chest using /tradehub
+	Deleting an Order:
+		There is an option to delete an order using /tradehub
+		Your items/credits are fully refunded after deleting an order
+		Items from the refund go into the output chest
+	Modifying an order:
+		The only way to modify an order is to delete it and place it again
+	Completing an Order:
+		To complete another player's order, simply fly to their trade hub, click on the sign, and click on the order you wish to fill
+		Select a quantity (using clickable chat) to buy/sell and complete the transaction
+		The items/credits are deducted from your inventory/bank and your payment goes directly into your inventory/bank
+	Trade Hub Interface:
+		Access with /tradehub
+		9 slot inventory - contains options for:
+			Place Sell Order:
+				Opens an inventory with 27 slots to put items into
+				Upon closing the inventory, the player chooses the amount to sell EACH INDIVIDUAL ITEM for (using clickable chat)
+				The clickable chat expires after 1 minute (or if you press cancel) and the items are put back in the player's inventory
+				Should the player's inventory be full, the remaining items are dropped on the ground
+			Place Buy Order:
+				Sends the player a message - "To place a buy order, type /buyitem <id> <amount> [damage]"
+				The id can be in either the new format or the old format
+				If the player types a valid id, a confirmation GUI will pop up confirming that the player has the right item
+				If the player confirms, the player chooses the amount to buy EACH INDIVIDUAL ITEM for (using clickable chat)
+				The clickable chat expires after 1 minute (or if you press cancel)
+				The player doesn't have to navigate through the GUI to place a buy order. Typing /buyitem <id> <amount> [damage] is enough
+			Delete Order:
+				Opens an inventory with 9 slots containing the player's various orders
+				The items shown are the items being bought/sold
+				The items are titled either Buy Order or Sell order
+				The lore of the items is formatted as follows:
+					Filled: <filled>/<total>
+					Unit Price: <price>
+					Coordinates: (<x>, <y>, <z>)
+				Clicking on an item brings up a deletion confirmation
+				Clicking yes will delete the order
+				Clicking no will close the GUI
+				Items/Credits are refunded
+				You cannot delete an order if your inventory is full
+	Additional Notes:
+		You cannot sell/buy more than 27 stacks using one order
+		You cannot deliver to a trade hub if there is not enough room in the output chest
+		Likewise, you cannot delete an order if there is not enough room in the output chest
+		You cannot buy from a trade hub if there is not enough room in your inventory
+		You can only have 9 orders at any given time
+Technical Design Decisions:
+	Classes:
+		Order:
+			Fields:
+				int credits - the amount of credits being offered
+				ItemStack[] items - the items being offered (can contain up to 27 stacks of 64)
+				boolean isSellOrder - true if the items are being sold
+		SQTrade:
+			Main Class
+			Contains the Listener for Bukkit Events
+		TradeHubInterface:
+			Fields:
+				static Inventory interface - the GUI that pops up when a player types /tradehub
+			Methods:
+				static Inventory getSellingInventory(Player player) - returns a blank Inventory with 27 slots
+				static Inventory getBuyingConfirmationInventory(Player player, ItemStack stack) - ItemStack represents the item being bought (quantity always 1)
+				static Inventory getDeletionInventory(Player player)
+				Contains other methods for clickable chat and anything that has to do with /tradehub
+		Structure:
+			Contains the static method is valid that accepts a Location and returns true if the Location contains the sign of a valid trade hub
+		OrderFiller:
+			Handles dropping off/picking up items
+		TradesSaver:
+			static void save() - called onDisable() to save all trades
+			static void load() - called onEnable() to load all trades
