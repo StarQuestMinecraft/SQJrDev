@@ -84,7 +84,7 @@ public class ParachuteSelector
 		
 		player.closeInventory();
 		
-		Bukkit.dispatchCommand(player.getServer().getConsoleSender(), "sync console all parachute " + player.getName() + " " + str.replaceAll(" ", "%"));
+		Bukkit.dispatchCommand(player.getServer().getConsoleSender(), "ee parachute " + player.getName() + " " + str.replaceAll(" ", "%"));
 	}
 	
 	public static void setParachuteWithCommand(Player player, String str)
