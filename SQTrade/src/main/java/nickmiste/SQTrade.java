@@ -513,10 +513,6 @@ public final class SQTrade extends JavaPlugin implements Listener
 						Bukkit.getScheduler().scheduleSyncDelayedTask(this, new ClaimTask((Player) sender), 1200);
 						return true;
 					}
-					else if (args[0].equalsIgnoreCase("admin") && ((Player) sender).hasPermission("sqtrade.admin"))
-					{
-						//Admin commands - No need to check arg lengths
-					}
 				}
 				else
 				{
