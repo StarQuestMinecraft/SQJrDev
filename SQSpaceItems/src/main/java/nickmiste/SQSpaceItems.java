@@ -26,6 +26,11 @@ public final class SQSpaceItems extends JavaPlugin implements Listener
 	@Override
 	public void onEnable() 
 	{
+		if (!Bukkit.getServerName().equals("Regalis") && !Bukkit.getServerName().equals("Digitalia") && !Bukkit.getServerName().equals("Defalos"))
+		{
+			this.setEnabled(false);
+			return;
+		}
 		instance = this;
 		Bukkit.getPluginManager().registerEvents(this, this);
 		
