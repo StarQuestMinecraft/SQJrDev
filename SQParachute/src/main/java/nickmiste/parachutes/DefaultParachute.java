@@ -7,6 +7,7 @@ import nickmiste.parachutes.tasks.DefaultParachuteTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
@@ -19,9 +20,9 @@ public class DefaultParachute extends Parachute
 		
 		short color = (short) (Math.random() * 15);
 		
-		ArmorStand armorStand1 = player.getWorld().spawn(loc.clone().add(0, 1, 2.3), ArmorStand.class);
-		ArmorStand armorStand2 = player.getWorld().spawn(loc.clone().add(0, 2, 1), ArmorStand.class);
-		ArmorStand armorStand3 = player.getWorld().spawn(loc.clone().add(0, 1, -3), ArmorStand.class);
+		ArmorStand armorStand1 = (ArmorStand) player.getWorld().spawnEntity(loc.clone().add(0, 1, 2.3), EntityType.ARMOR_STAND);
+		ArmorStand armorStand2 = (ArmorStand) player.getWorld().spawnEntity(loc.clone().add(0, 2, 1), EntityType.ARMOR_STAND);
+		ArmorStand armorStand3 = (ArmorStand) player.getWorld().spawnEntity(loc.clone().add(0, 1, -3), EntityType.ARMOR_STAND);
 		
 		armorStand1.setHeadPose(new EulerAngle(5 * Math.PI / 3, 0, 0));
 		armorStand1.getEquipment().setHelmet(new ItemStack(Material.BANNER, 0, color));

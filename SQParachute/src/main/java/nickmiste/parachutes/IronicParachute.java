@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -19,7 +20,7 @@ public class IronicParachute extends Parachute
 	{
 		super(player, gliding);
 		
-		anvil = player.getWorld().spawn(loc, ArmorStand.class);
+		anvil = (ArmorStand) player.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
 		anvil.getEquipment().setHelmet(new ItemStack(Material.ANVIL, 0));
 		anvil.setVisible(false);
 		

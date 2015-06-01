@@ -5,6 +5,7 @@ import nickmiste.SQParachute;
 import nickmiste.parachutes.tasks.SlimeParachuteTask;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.potion.PotionEffect;
@@ -18,7 +19,7 @@ public class SlimeParachute extends Parachute
 	{
 		super(player, gliding);
 		
-		slime = player.getWorld().spawn(player.getLocation(), Slime.class);
+		slime = (Slime) player.getWorld().spawnEntity(player.getLocation(), EntityType.SLIME);
 		slime.setSize(5);
 		slime.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 4, false, false));
 		slime.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 4, false, false));

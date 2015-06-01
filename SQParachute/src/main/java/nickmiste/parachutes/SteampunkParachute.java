@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.inventory.ItemStack;
@@ -36,8 +37,8 @@ public class SteampunkParachute extends Parachute
 		meta.addPattern(new Pattern(DyeColor.ORANGE, PatternType.CIRCLE_MIDDLE));
 		stack.setItemMeta(meta);
 		
-		ArmorStand armorStand1 = player.getWorld().spawn(loc, ArmorStand.class);
-		ArmorStand armorStand2 = player.getWorld().spawn(loc, ArmorStand.class);
+		ArmorStand armorStand1 = (ArmorStand) player.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
+		ArmorStand armorStand2 = (ArmorStand) player.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
 		
 		armorStand1.getEquipment().setHelmet(stack);
 		armorStand1.setGravity(false);
@@ -50,14 +51,14 @@ public class SteampunkParachute extends Parachute
 		Parachute.parachutingArmorStands.add(armorStand1);
 		Parachute.parachutingArmorStands.add(armorStand2);
 		
-		Slime slime1 = player.getWorld().spawn(player.getLocation(), Slime.class);
-		Slime slime2 = player.getWorld().spawn(player.getLocation(), Slime.class);
-		Slime slime3 = player.getWorld().spawn(player.getLocation(), Slime.class);
-		Slime slime4 = player.getWorld().spawn(player.getLocation(), Slime.class);
-		Slime slime5 = player.getWorld().spawn(player.getLocation(), Slime.class);
-		Slime slime6 = player.getWorld().spawn(player.getLocation(), Slime.class);
-		Slime slime7 = player.getWorld().spawn(player.getLocation(), Slime.class);
-		Slime slime8 = player.getWorld().spawn(player.getLocation(), Slime.class);
+		Slime slime1 = (Slime) player.getWorld().spawnEntity(player.getLocation(), EntityType.SLIME);
+		Slime slime2 = (Slime) player.getWorld().spawnEntity(player.getLocation(), EntityType.SLIME);
+		Slime slime3 = (Slime) player.getWorld().spawnEntity(player.getLocation(), EntityType.SLIME);
+		Slime slime4 = (Slime) player.getWorld().spawnEntity(player.getLocation(), EntityType.SLIME);
+		Slime slime5 = (Slime) player.getWorld().spawnEntity(player.getLocation(), EntityType.SLIME);
+		Slime slime6 = (Slime) player.getWorld().spawnEntity(player.getLocation(), EntityType.SLIME);
+		Slime slime7 = (Slime) player.getWorld().spawnEntity(player.getLocation(), EntityType.SLIME);
+		Slime slime8 = (Slime) player.getWorld().spawnEntity(player.getLocation(), EntityType.SLIME);
 		
 		slime1.setSize(-1);
 		slime2.setSize(-1);
