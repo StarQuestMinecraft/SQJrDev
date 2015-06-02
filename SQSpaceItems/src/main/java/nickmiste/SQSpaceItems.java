@@ -80,6 +80,7 @@ public final class SQSpaceItems extends JavaPlugin implements Listener
 			ArmorStand mount = item.getWorld().spawn(item.getLocation().clone().subtract(0, 1.5, 0), ArmorStand.class);
 			mount.setVisible(false);
 			mount.setGravity(false);
+			mount.setSmall(true);
 			mount.setPassenger(item);
 			armorStands.add(mount);
 		}
