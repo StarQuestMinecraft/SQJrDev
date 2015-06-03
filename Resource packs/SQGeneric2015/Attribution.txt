@@ -1,0 +1,21 @@
+===============
+| Attribution |
+===============
+
+This pack is mostly a compilation that features some original resources.
+
+The StarQuestMinecraft resources pack uses some textures that are created and maintained by the following resource packs/authors:
+1: HudCraft
+2: oCd Pack 1.6 by disco
+3: Sphax PureBDcraft 16x MC16
+4: PK Pack - EathBound Resource Test
+5: Soratex_Fanver
+6:  Atherys_Ascended_x32_1.5-v1.4
+7: Textura La pesadilla de Herobrine
+8: [1.5] Plast Pack
+9: The Painterly Pack
+
+By order of the Creative Commons License, all resources from the packs listed above are neither modified, nor being used for comercial purposes, nor
+being attributed to another author.
+
+If you wish to modify this pack, please consult the licenses for the packs listed above.

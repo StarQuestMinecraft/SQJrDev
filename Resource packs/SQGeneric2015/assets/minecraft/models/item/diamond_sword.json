@@ -1,0 +1,7 @@
+{
+    "parent": "item/meshes/lightsaber",
+    "textures": {
+        "blade": "models/lightsaber/diamond_blade",
+        "hilt": "blocks/diamond_block",		"particle": "blocks/diamond_block"
+    }
+}
