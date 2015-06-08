@@ -1,6 +1,7 @@
 package nickmiste;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import nickmiste.inventory.ConfirmGUI;
 import nickmiste.inventory.InvUtils;
@@ -38,8 +39,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.greatmancode.craftconomy3.Common;
 import com.greatmancode.craftconomy3.tools.interfaces.Loader;
-
-import dibujaron.Compression;
 
 public final class SQTrade extends JavaPlugin implements Listener
 {
@@ -170,8 +169,8 @@ public final class SQTrade extends JavaPlugin implements Listener
 					return;
 				}
 				
-				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new DeletionConfirmationTask((Player) event.getWhoClicked(), 
-						Compression.str15ToUuid(event.getCurrentItem().getItemMeta().getLore().get(0).substring(2))), 1200);
+				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new DeletionConfirmationTask((Player) event.getWhoClicked(),
+						UUID.fromString(event.getCurrentItem().getItemMeta().getLore().get(0).substring(4))), 1200);
 				
 				event.getWhoClicked().closeInventory();
 				((Player) event.getWhoClicked()).openInventory(ConfirmGUI.getDeletionGUI((Player) event.getWhoClicked()));
@@ -212,7 +211,7 @@ public final class SQTrade extends JavaPlugin implements Listener
 				}
 				
 				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new CompletionConfirmationTask((Player) event.getWhoClicked(), 
-						Compression.str15ToUuid(event.getCurrentItem().getItemMeta().getLore().get(0).substring(2))), 1200);
+						UUID.fromString(event.getCurrentItem().getItemMeta().getLore().get(0).substring(4))), 1200);
 				
 				((Player) event.getWhoClicked()).closeInventory();
 				((Player) event.getWhoClicked()).openInventory(ConfirmGUI.getCompletionGUI((Player) event.getWhoClicked()));
@@ -299,6 +298,7 @@ public final class SQTrade extends JavaPlugin implements Listener
 											else
 											{
 												((Player) event.getWhoClicked()).sendMessage(ChatColor.DARK_RED + "You do not have enough money to buy that!");
+												return;
 											}
 										}
 										else
