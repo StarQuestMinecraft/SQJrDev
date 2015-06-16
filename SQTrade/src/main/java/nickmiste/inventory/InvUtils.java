@@ -56,11 +56,11 @@ public class InvUtils
 		ItemMeta meta = stack.getItemMeta();
 		meta.setDisplayName(ChatColor.RED + "" + order.quantity + "x " + stack.getType());
 		ArrayList<String> lore = new ArrayList<String>();
-		lore.add(ChatColor.AQUA + "" + ChatColor.MAGIC + order.orderId);
 		lore.add(order.isSellOrder ? ChatColor.AQUA + "Sell Order" : ChatColor.AQUA + "Buy Order");
 		lore.add(ChatColor.AQUA + "Price: " + order.price);
 		lore.add(ChatColor.AQUA + "Located on " + order.loc.getWorld().getName() + " [" + order.loc.getX() + ", " + order.loc.getY() + ", " + order.loc.getZ() + "]");
 		lore.add(ChatColor.AQUA + "Ordered by: " + Bukkit.getOfflinePlayer(order.player).getName());
+		lore.add(ChatColor.AQUA + "" + ChatColor.MAGIC + order.orderId);
 		meta.setLore(lore);
 		stack.setItemMeta(meta);
 		

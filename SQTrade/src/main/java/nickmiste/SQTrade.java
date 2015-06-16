@@ -78,8 +78,15 @@ public final class SQTrade extends JavaPlugin implements Listener
 					{
 						Chest chest = (Chest) sign.getWorld().getBlockAt(sign.getLocation().subtract(0, 1, 0)).getState();
 					
+						if (chest.getInventory().getSize() != 27)
+						{
+							event.getPlayer().sendMessage(ChatColor.DARK_RED + "You can only sell a single chest of items at a time!");
+							return;
+						}
+						
 						//return if chest is empty
-						for (int i = 0; i < chest.getInventory().getSize(); i++)
+						for (int i = 0; i < 27; i++)
+						{
 							if (chest.getInventory().getItem(i) != null)
 								break;
 							else if (i == chest.getInventory().getSize() - 1)
@@ -87,6 +94,7 @@ public final class SQTrade extends JavaPlugin implements Listener
 								event.getPlayer().sendMessage(ChatColor.DARK_RED + "The chest is empty!");
 								return;
 							}
+						}
 						
 						ItemStack firstItem = null;
 						for (ItemStack stack : chest.getInventory().getContents())
@@ -170,7 +178,7 @@ public final class SQTrade extends JavaPlugin implements Listener
 				}
 				
 				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new DeletionConfirmationTask((Player) event.getWhoClicked(),
-						UUID.fromString(event.getCurrentItem().getItemMeta().getLore().get(0).substring(4))), 1200);
+						UUID.fromString(event.getCurrentItem().getItemMeta().getLore().get(event.getCurrentItem().getItemMeta().getLore().size() - 1).substring(4))), 1200);
 				
 				event.getWhoClicked().closeInventory();
 				((Player) event.getWhoClicked()).openInventory(ConfirmGUI.getDeletionGUI((Player) event.getWhoClicked()));
@@ -211,7 +219,7 @@ public final class SQTrade extends JavaPlugin implements Listener
 				}
 				
 				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new CompletionConfirmationTask((Player) event.getWhoClicked(), 
-						UUID.fromString(event.getCurrentItem().getItemMeta().getLore().get(0).substring(4))), 1200);
+						UUID.fromString(event.getCurrentItem().getItemMeta().getLore().get(event.getCurrentItem().getItemMeta().getLore().size() - 1).substring(4))), 1200);
 				
 				((Player) event.getWhoClicked()).closeInventory();
 				((Player) event.getWhoClicked()).openInventory(ConfirmGUI.getCompletionGUI((Player) event.getWhoClicked()));

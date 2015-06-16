@@ -71,8 +71,18 @@ public class OrderBrowser
 			if (!customSearch.get(i).player.equals(player.getUniqueId()))
 				inv.setItem(MAIN_SLOTS[i % MAIN_SLOTS.length], InvUtils.getDisplayStack(customSearch.get(i)));
 		
-		for (int i = 0; i < OrderTracker.getOrdersFromPlayer(player).size(); i++)
-			inv.setItem(i + 45, InvUtils.getDisplayStack(OrderTracker.getOrdersFromPlayer(player).get(i)));
+		int numMyTrades = 0;
+		for (int i = 0; i < customSearch.size(); i++)
+		{
+			if (customSearch.get(i).player.equals(player.getUniqueId()))
+			{
+				inv.setItem(numMyTrades + 45, InvUtils.getDisplayStack(customSearch.get(i)));
+				numMyTrades++;
+			}
+			
+			if (numMyTrades == 9)
+				break;
+		}
 		
 		return inv;
 	}

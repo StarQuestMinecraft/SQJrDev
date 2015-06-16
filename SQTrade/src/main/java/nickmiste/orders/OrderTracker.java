@@ -211,11 +211,11 @@ public class OrderTracker
 				numPlayerTrades++;
 		}
 		
-		if (numPlayerTrades >= 9)
-			Bukkit.getPlayer(player).sendMessage(ChatColor.DARK_RED + "You can only have up to 9 trades at a time!");
+		if (numPlayerTrades >= 54)
+			Bukkit.getPlayer(player).sendMessage(ChatColor.DARK_RED + "You can only have up to 54 trades at a time!");
 		if (numPostTrades >= 54)
 			Bukkit.getPlayer(player).sendMessage(ChatColor.DARK_RED + "Each post can only have up to 54 trades at a time!");
 		
-		return numPlayerTrades < 9 && numPostTrades < 54;
+		return numPlayerTrades < 54 && numPostTrades < 54;
 	}
 }

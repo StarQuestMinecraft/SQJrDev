@@ -14,7 +14,7 @@ public class OrderManager
 	
 	public static Inventory getManager(Player player)
 	{
-		Inventory inv = Bukkit.createInventory(player, 9, INVENTORY_NAME);
+		Inventory inv = Bukkit.createInventory(player, 54, INVENTORY_NAME);
 		for (Order order : OrderTracker.getOrdersFromPlayer(player))
 		{
 			inv.setItem(inv.firstEmpty(), InvUtils.getDisplayStack(order));
