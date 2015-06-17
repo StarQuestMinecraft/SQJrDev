@@ -22,8 +22,8 @@ public class SlimeParachute extends Parachute
 		slime = (Slime) player.getWorld().spawnEntity(player.getLocation(), EntityType.SLIME);
 		slime.setSize(5);
 		slime.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 4, false, false));
-		slime.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 100, false, false));
 		slime.setPassenger(player);
+		Parachute.parachutingLargeSlimes.add(slime);
 		
 		SlimeParachuteTask task = new SlimeParachuteTask(this, slime);
 		int id = Bukkit.getScheduler().scheduleSyncRepeatingTask(SQParachute.getInstance(), task, 1, 1);

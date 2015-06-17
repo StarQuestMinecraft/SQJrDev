@@ -40,7 +40,7 @@ public class MeteorParachuteTask extends ParachuteTask
 			
 			parachute.player.getWorld().playSound(parachute.player.getLocation(), Sound.FIRE, 10, -10);
 			
-			if (this.meteor.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid())
+			if (this.meteor.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid() || this.parachute.player.isOnGround())
 			{	
 				for (int i = 0; i < 10; i++)
 					parachute.player.getWorld().playEffect(parachute.player.getLocation(), Effect.EXPLOSION_HUGE, 0);
@@ -52,8 +52,9 @@ public class MeteorParachuteTask extends ParachuteTask
 		else
 			parachute.player.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 	
-		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid())
+		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid() || this.parachute.player.isDead())
 		{
+			
 			Parachute.parachuting.remove(parachute.player);
 			Parachute.glidingPlayers.remove(parachute.player);
 			Bukkit.getScheduler().cancelTask(this.id);

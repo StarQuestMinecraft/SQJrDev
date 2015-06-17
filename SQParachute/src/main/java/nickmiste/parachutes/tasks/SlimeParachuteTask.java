@@ -23,18 +23,22 @@ public class SlimeParachuteTask extends ParachuteTask
 	public void run() 
 	{	
 		Vector direction = parachute.player.getLocation().getDirection();
-	
+		
 		if (!slime.isDead())
 		{
 			slime.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
+			slime.setPassenger(parachute.player);
 			
-			if (slime.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid())
+			if (slime.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid() || this.parachute.player.isOnGround())
+			{
+				Parachute.parachutingLargeSlimes.remove(slime);
 				slime.remove();
+			}
 		}
 		else
 			parachute.player.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 		
-		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid())
+		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid() || this.parachute.player.isDead())
 		{
 			Parachute.parachuting.remove(parachute.player);
 			Parachute.glidingPlayers.remove(parachute.player);

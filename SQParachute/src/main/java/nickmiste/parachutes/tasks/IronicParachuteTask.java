@@ -29,7 +29,7 @@ public class IronicParachuteTask extends ParachuteTask
 			anvil.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 			anvil.setPassenger(parachute.player);
 			
-			if (anvil.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid())
+			if (anvil.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid() || this.parachute.player.isOnGround())
 			{
 				parachute.player.getWorld().playSound(parachute.player.getLocation(), Sound.ANVIL_LAND, 20, 0);
 				Parachute.parachutingArmorStands.remove(anvil);
@@ -39,7 +39,7 @@ public class IronicParachuteTask extends ParachuteTask
 		else
 			parachute.player.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 		
-		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid())
+		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid() || this.parachute.player.isDead())
 		{
 			Parachute.parachuting.remove(parachute.player);
 			Bukkit.getScheduler().cancelTask(this.id);

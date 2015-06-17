@@ -59,7 +59,7 @@ public class DefaultParachuteTask extends ParachuteTask
 		this.lastY = parachute.player.getLocation().getY();
 		this.lastZ = parachute.player.getLocation().getZ();
 		
-		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid())
+		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid() || this.parachute.player.isDead())
 		{
 			Parachute.parachuting.remove(parachute.player);
 			Parachute.glidingPlayers.remove(parachute.player);

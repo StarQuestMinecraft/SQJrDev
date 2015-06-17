@@ -9,9 +9,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -91,12 +93,16 @@ public final class SQParachute extends JavaPlugin implements Listener
 	public void onDamageTaken(EntityDamageEvent event)
 	{
 		if (event.getEntity() instanceof Player)
-		{
 			if (event.getCause().equals(DamageCause.FALL) && Parachute.parachuting.contains((Player) event.getEntity()))
 				event.setCancelled(true);
-			else if (event.getCause().equals(DamageCause.PROJECTILE) && Parachute.glidingPlayers.contains((Player) event.getEntity()))
-				Parachute.parachuting.remove((Player) event.getEntity());
-		}
+	}
+	
+	@EventHandler
+	public void onEntityDamageByEntity(EntityDamageByEntityEvent event)
+	{
+		if (event.getDamager() instanceof Slime)
+			if (Parachute.parachutingLargeSlimes.contains((Slime) event.getDamager()))
+				event.setCancelled(true);
 	}
 	
 	@EventHandler

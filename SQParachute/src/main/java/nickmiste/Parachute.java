@@ -13,6 +13,7 @@ import nickmiste.parachutes.SteampunkParachute;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Slime;
 
 public abstract class Parachute 
 {
@@ -24,6 +25,7 @@ public abstract class Parachute
 	public static ArrayList<Player> parachuting = new ArrayList<Player>();
 	public static ArrayList<Player> glidingPlayers = new ArrayList<Player>();
 	public static ArrayList<ArmorStand> parachutingArmorStands = new ArrayList<ArmorStand>();
+	public static ArrayList<Slime> parachutingLargeSlimes = new ArrayList<Slime>();
 	
 	public Parachute(Player player, boolean gliding)
 	{

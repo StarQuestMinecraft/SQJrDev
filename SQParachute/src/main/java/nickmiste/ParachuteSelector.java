@@ -84,7 +84,7 @@ public class ParachuteSelector
 		
 		player.closeInventory();
 		
-		Bukkit.dispatchCommand(player.getServer().getConsoleSender(), "ee parachute " + player.getName() + " " + str.replaceAll(" ", "%"));
+		Bukkit.dispatchCommand(player.getServer().getConsoleSender(), "ee parachute " + player.getUniqueId() + " " + str.replaceAll(" ", "%"));
 	}
 	
 	public static void setParachuteWithCommand(Player player, String str)
