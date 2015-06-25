@@ -61,6 +61,7 @@ public class InvUtils
 		lore.add(ChatColor.AQUA + "Located on " + order.loc.getWorld().getName() + " [" + order.loc.getX() + ", " + order.loc.getY() + ", " + order.loc.getZ() + "]");
 		lore.add(ChatColor.AQUA + "Ordered by: " + Bukkit.getOfflinePlayer(order.player).getName());
 		lore.add(ChatColor.AQUA + "" + ChatColor.MAGIC + order.orderId);
+		lore.add(ChatColor.RED + "Contraband");
 		meta.setLore(lore);
 		stack.setItemMeta(meta);
 		

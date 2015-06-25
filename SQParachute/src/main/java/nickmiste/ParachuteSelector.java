@@ -15,6 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class ParachuteSelector 
 {
 	public static final String SELECTOR_NAME = ChatColor.BLUE + "Select a parachute:";
+	public static final ArrayList<String> CONTRABAND = new ArrayList<String>();
 	
 	public static HashMap<UUID, String> parachutes = new HashMap<UUID, String>();
 	
@@ -34,6 +35,7 @@ public class ParachuteSelector
 	
 	static
 	{
+		CONTRABAND.add(ChatColor.RED + "Contraband");
 		addItem(Material.FEATHER, 0, DEFAULT_PARACHUTE);
 		addItem(Material.GOLD_INGOT, 0, RAINBOW_PARACHUTE);
 		addItem(Material.NETHERRACK, 0, METEOR_PARACHUTE);
@@ -65,10 +67,11 @@ public class ParachuteSelector
 	}
 	
 	private static void addItem(Material material, int damage, String name)
-	{
+	{	
 		ItemStack stack = new ItemStack(material, 1, (short) damage);
 		ItemMeta meta = stack.getItemMeta();
 		meta.setDisplayName(name);
+		meta.setLore(CONTRABAND);
 		stack.setItemMeta(meta);
 		
 		ITEMS.add(stack);

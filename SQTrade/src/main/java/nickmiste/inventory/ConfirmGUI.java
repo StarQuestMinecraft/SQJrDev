@@ -1,5 +1,7 @@
 package nickmiste.inventory;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -18,14 +20,19 @@ public class ConfirmGUI
 	
 	static
 	{
+		ArrayList<String> contraband = new ArrayList<String>();
+		contraband.add(ChatColor.RED + "Contraband");
+		
 		confirm = new ItemStack(Material.WOOL, 1, (short) 5);
 		ItemMeta confirmMeta = confirm.getItemMeta();
 		confirmMeta.setDisplayName(ChatColor.GREEN + "CONFIRM");
+		confirmMeta.setLore(contraband);
 		confirm.setItemMeta(confirmMeta);
 		
 		cancel = new ItemStack(Material.WOOL, 1, (short) 14);
 		ItemMeta cancelMeta = cancel.getItemMeta();
 		cancelMeta.setDisplayName(ChatColor.RED + "CANCEL");
+		cancelMeta.setLore(contraband);
 		cancel.setItemMeta(cancelMeta);
 	}
 	

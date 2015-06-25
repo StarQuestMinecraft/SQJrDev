@@ -1,3 +1,10 @@
 name: SQTreeFarm
 main: nickmiste.SQTreeFarm
 version: 1.0
+permissions:
+   sqtreefarm.create:
+      description: Allows the player to create treefarms
+      default: false
+   sqtreefarm.use:
+      description: Allows the player to activate treefarms
+      default: false

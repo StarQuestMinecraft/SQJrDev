@@ -178,7 +178,7 @@ public final class SQTrade extends JavaPlugin implements Listener
 				}
 				
 				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new DeletionConfirmationTask((Player) event.getWhoClicked(),
-						UUID.fromString(event.getCurrentItem().getItemMeta().getLore().get(event.getCurrentItem().getItemMeta().getLore().size() - 1).substring(4))), 1200);
+						UUID.fromString(event.getCurrentItem().getItemMeta().getLore().get(event.getCurrentItem().getItemMeta().getLore().size() - 2).substring(4))), 1200);
 				
 				event.getWhoClicked().closeInventory();
 				((Player) event.getWhoClicked()).openInventory(ConfirmGUI.getDeletionGUI((Player) event.getWhoClicked()));
@@ -219,7 +219,7 @@ public final class SQTrade extends JavaPlugin implements Listener
 				}
 				
 				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new CompletionConfirmationTask((Player) event.getWhoClicked(), 
-						UUID.fromString(event.getCurrentItem().getItemMeta().getLore().get(event.getCurrentItem().getItemMeta().getLore().size() - 1).substring(4))), 1200);
+						UUID.fromString(event.getCurrentItem().getItemMeta().getLore().get(event.getCurrentItem().getItemMeta().getLore().size() - 2).substring(4))), 1200);
 				
 				((Player) event.getWhoClicked()).closeInventory();
 				((Player) event.getWhoClicked()).openInventory(ConfirmGUI.getCompletionGUI((Player) event.getWhoClicked()));

@@ -57,7 +57,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event)
 	{
-		if (!event.getPlayer().getWorld().getName().equals("Regalis") && !event.getPlayer().getWorld().getName().equals("Digitalia") && !event.getPlayer().getWorld().getName().equals("Defalos"))
+		if (!event.getPlayer().getWorld().getName().startsWith("Trinitos_"))
 		{
 			if (event.getPlayer().hasPermission("sqparachute.use"))
 			{

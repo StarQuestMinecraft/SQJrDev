@@ -41,7 +41,7 @@ public final class SQTreeFarm extends JavaPlugin implements Listener
 			if (event.getClickedBlock().getState().getType().equals(Material.WALL_SIGN))
 			{
 				Sign sign = (Sign) (event.getClickedBlock().getState());
-				if ((sign.getLine(0).equals("[treefarm]") && Structure.isValid(event.getClickedBlock().getLocation())))
+				if ((sign.getLine(0).equals("[treefarm]") && Structure.isValid(event.getClickedBlock().getLocation())) && event.getPlayer().hasPermission("sqtreefarm.create"))
 				{
 					sign.setLine(0, "");
 					sign.setLine(1, ChatColor.GREEN + "Tree" + ChatColor.DARK_GREEN + "farm");
@@ -61,7 +61,8 @@ public final class SQTreeFarm extends JavaPlugin implements Listener
 				}
 				else if (sign.getLine(1).equals(ChatColor.GREEN + "Tree" + ChatColor.DARK_GREEN + "farm") &&
 						 sign.getLine(2).equals(ChatColor.DARK_RED + "[INACTIVE]") &&
-						 Structure.isValid(event.getClickedBlock().getLocation()))
+						 Structure.isValid(event.getClickedBlock().getLocation()) && 
+						 event.getPlayer().hasPermission("sqtreefarm.use"))
 				{
 					sign.setLine(2, ChatColor.BLUE + "[ACTIVE]");
 					sign.update();
