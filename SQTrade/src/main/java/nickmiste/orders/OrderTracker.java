@@ -32,7 +32,7 @@ public class OrderTracker
 			{
 				Order order = new Order(UUID.fromString(rs.getString(2)),
 						rs.getBoolean(3), Material.getMaterial(rs.getInt(4)), rs.getShort(5), rs.getInt(6), rs.getInt(7), 
-						new Location(Bukkit.getWorld(rs.getString(11)), rs.getInt(8), rs.getInt(9), rs.getInt(10)));
+						new Location(null, rs.getInt(8), rs.getInt(9), rs.getInt(10)), rs.getString(11));
 				order.orderId = UUID.fromString(rs.getString(1));
 				
 				orders.add(order);
@@ -60,7 +60,7 @@ public class OrderTracker
 			{
 				Order order = new Order(UUID.fromString(rs.getString(2)),
 						rs.getBoolean(3), Material.getMaterial(rs.getInt(4)), rs.getShort(5), rs.getInt(6), rs.getInt(7), 
-						new Location(Bukkit.getWorld(rs.getString(11)), rs.getInt(8), rs.getInt(9), rs.getInt(10)));
+						new Location(null, rs.getInt(8), rs.getInt(9), rs.getInt(10)), rs.getString(11));
 				order.orderId = UUID.fromString(rs.getString(1));
 				
 				orders.add(order);
@@ -68,7 +68,7 @@ public class OrderTracker
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 		
 		return orders;
@@ -91,9 +91,8 @@ public class OrderTracker
 					+","+ order.loc.getBlockX() 
 					+","+ order.loc.getBlockY()
 					+","+ order.loc.getBlockZ()
-					+",'"+ order.loc.getWorld().getName()
+					+",'"+ order.world
 					+"');");
-			System.out.println(order.loc.getWorld().getName());
 		}
 		catch (Exception e)
 		{
@@ -118,7 +117,7 @@ public class OrderTracker
 					+","+ order.loc.getBlockX() 
 					+","+ order.loc.getBlockY()
 					+","+ order.loc.getBlockZ()
-					+",'"+ order.loc.getWorld().getName()
+					+",'"+ order.world
 					+"');");
 		}
 		catch (Exception e)
