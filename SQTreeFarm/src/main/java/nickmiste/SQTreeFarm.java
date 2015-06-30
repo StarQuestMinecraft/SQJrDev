@@ -61,7 +61,7 @@ public final class SQTreeFarm extends JavaPlugin implements Listener
 				else if (sign.getLine(1).equals(ChatColor.GREEN + "Tree" + ChatColor.DARK_GREEN + "farm") &&
 						 sign.getLine(2).equals(ChatColor.DARK_RED + "[INACTIVE]") &&
 						 Structure.isValid(event.getClickedBlock().getLocation()) && 
-						 event.getPlayer().hasPermission("sqtreefarm.use"))
+						 event.getPlayer().hasPermission("sqtreefarm.create"))
 				{
 					sign.setLine(2, ChatColor.BLUE + "[ACTIVE]");
 					sign.update();
