@@ -272,7 +272,7 @@ public final class SQTrade extends JavaPlugin implements Listener
 								if (OrderTracker.getOrders().get(i).orderId.equals(CompletionConfirmationTask.pendingCompletions.get((Player) event.getWhoClicked())))
 								{
 									Location orderLoc = OrderTracker.getOrders().get(i).loc.clone();
-									if (Bukkit.getWorld(OrderTracker.getOrders().get(i).world) != null)
+									if (event.getWhoClicked().getLocation().getWorld().equals(Bukkit.getWorld(OrderTracker.getOrders().get(i).world)))
 										orderLoc.setWorld(Bukkit.getWorld(OrderTracker.getOrders().get(i).world));
 									else
 									{
@@ -280,7 +280,7 @@ public final class SQTrade extends JavaPlugin implements Listener
 										return;
 									}
 									
-									if (((Player) event.getWhoClicked()).getLocation().distance(orderLoc) <= 10)
+									if (((Player) event.getWhoClicked()).getLocation().distance(OrderTracker.getOrders().get(i).loc) <= 10)
 									{
 										if (OrderTracker.getOrders().get(i).isSellOrder)
 										{
@@ -383,7 +383,7 @@ public final class SQTrade extends JavaPlugin implements Listener
 							if (OrderTracker.getOrders().get(i).orderId.equals(DeletionConfirmationTask.pendingDeletions.get((Player) event.getWhoClicked())))
 							{
 								Location orderLoc = OrderTracker.getOrders().get(i).loc.clone();
-								if (Bukkit.getWorld(OrderTracker.getOrders().get(i).world) != null)
+								if (event.getWhoClicked().getLocation().getWorld().equals(Bukkit.getWorld(OrderTracker.getOrders().get(i).world)))
 									orderLoc.setWorld(Bukkit.getWorld(OrderTracker.getOrders().get(i).world));
 								else
 								{
