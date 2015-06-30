@@ -54,7 +54,6 @@ public class MeteorParachuteTask extends ParachuteTask
 	
 		if (this.parachute.player.isOnGround() || !this.parachute.player.isOnline() || this.parachute.player.getLocation().getBlock().isLiquid() || this.parachute.player.isDead())
 		{
-			
 			Parachute.parachuting.remove(parachute.player);
 			Parachute.glidingPlayers.remove(parachute.player);
 			Bukkit.getScheduler().cancelTask(this.id);

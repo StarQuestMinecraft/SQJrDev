@@ -30,6 +30,7 @@ public class ParachuteSelector
 	public static final String SKYDOG_PARACHUTE = ChatColor.DARK_RED + "Sky" + ChatColor.GRAY + "dog";
 	public static final String METEOR_PARACHUTE = ChatColor.RED + "" + ChatColor.BOLD + "Meteor";
 	public static final String SLIME_PARACHUTE = ChatColor.GREEN + "" + ChatColor.BOLD + "Slime Parachute";
+	public static final String WINGS = ChatColor.GOLD + "Wings";
 	
 	private static final ArrayList<ItemStack> ITEMS = new ArrayList<ItemStack>();
 	
@@ -43,13 +44,14 @@ public class ParachuteSelector
 		addItem(Material.ANVIL, 0, IRONIC_PARACHUTE);
 		addItem(Material.BONE, 0, SKYDOG_PARACHUTE);
 		addItem(Material.SLIME_BALL, 0,  SLIME_PARACHUTE);
+		addItem(Material.SKULL_ITEM, 1, WINGS);
 	}
 	
 	public static Inventory getSelector(Player player)
 	{
 		Inventory selector = Bukkit.createInventory(player, 9, SELECTOR_NAME);
 		
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < 8; i++)
 		{
 			if (player.hasPermission("sqparachute." + getStringWithoutFormatting(ITEMS.get(i).getItemMeta().getDisplayName())) || ITEMS.get(i).getItemMeta().getDisplayName().equals(DEFAULT_PARACHUTE))
 				selector.setItem(selector.firstEmpty(), ITEMS.get(i));

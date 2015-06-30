@@ -9,6 +9,7 @@ import nickmiste.parachutes.RainbowParachute;
 import nickmiste.parachutes.SkydogParachute;
 import nickmiste.parachutes.SlimeParachute;
 import nickmiste.parachutes.SteampunkParachute;
+import nickmiste.parachutes.WingParachute;
 
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
@@ -54,6 +55,8 @@ public abstract class Parachute
 				return new MeteorParachute(player, gliding);
 			else if (ParachuteSelector.parachutes.get(player.getUniqueId()).equals(ParachuteSelector.SLIME_PARACHUTE))
 				return new SlimeParachute(player, gliding);
+			else if (ParachuteSelector.parachutes.get(player.getUniqueId()).equals(ParachuteSelector.WINGS))
+				return new WingParachute(player, gliding);
 		return new DefaultParachute(player, gliding);
 	}
 }
