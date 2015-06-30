@@ -5,23 +5,12 @@ import org.bukkit.Material;
 
 public class Structure 
 {
-	public static boolean allowHopperFuelInput;
-	
 	public static boolean isValid(Location loc)
 	{
 		Location gold = getGoldRelativeToSign(loc);
 
 		if (gold == null)
 			return false;
-	
-		if (!allowHopperFuelInput)
-			if (getBlockTypeRelativeToLoc(loc.clone().add(0, 1, 0), 1, 0, 0).equals(Material.HOPPER) ||
-				getBlockTypeRelativeToLoc(loc.clone().add(0, 1, 0), -1, 0, 0).equals(Material.HOPPER) ||
-				getBlockTypeRelativeToLoc(loc.clone().add(0, 1, 0), 0, 0, 1).equals(Material.HOPPER) ||
-				getBlockTypeRelativeToLoc(loc.clone().add(0, 1, 0), 0, 0, -1).equals(Material.HOPPER))
-			{
-				return false;
-			}
 		
 		return (getBlockTypeRelativeToLoc(loc, 0, 0, 0).equals(Material.WALL_SIGN) &&
 				getBlockTypeRelativeToLoc(gold, 1, 0, 0).equals(Material.STAINED_GLASS) &&
