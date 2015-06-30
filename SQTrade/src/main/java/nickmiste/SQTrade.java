@@ -22,6 +22,7 @@ import nickmiste.tasks.info.BuyInfo;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
@@ -270,7 +271,16 @@ public final class SQTrade extends JavaPlugin implements Listener
 							{
 								if (OrderTracker.getOrders().get(i).orderId.equals(CompletionConfirmationTask.pendingCompletions.get((Player) event.getWhoClicked())))
 								{
-									if (((Player) event.getWhoClicked()).getLocation().distance(OrderTracker.getOrders().get(i).loc) <= 10)
+									Location orderLoc = OrderTracker.getOrders().get(i).loc.clone();
+									if (Bukkit.getWorld(OrderTracker.getOrders().get(i).world) != null)
+										orderLoc.setWorld(Bukkit.getWorld(OrderTracker.getOrders().get(i).world));
+									else
+									{
+										((Player) event.getWhoClicked()).sendMessage(ChatColor.DARK_RED + "Too far away!");
+										return;
+									}
+									
+									if (((Player) event.getWhoClicked()).getLocation().distance(orderLoc) <= 10)
 									{
 										if (OrderTracker.getOrders().get(i).isSellOrder)
 										{
@@ -372,7 +382,16 @@ public final class SQTrade extends JavaPlugin implements Listener
 						{
 							if (OrderTracker.getOrders().get(i).orderId.equals(DeletionConfirmationTask.pendingDeletions.get((Player) event.getWhoClicked())))
 							{
-								if (((Player) event.getWhoClicked()).getLocation().distance(OrderTracker.getOrders().get(i).loc) <= 10)
+								Location orderLoc = OrderTracker.getOrders().get(i).loc.clone();
+								if (Bukkit.getWorld(OrderTracker.getOrders().get(i).world) != null)
+									orderLoc.setWorld(Bukkit.getWorld(OrderTracker.getOrders().get(i).world));
+								else
+								{
+									((Player) event.getWhoClicked()).sendMessage(ChatColor.DARK_RED + "Too far away!");
+									return;
+								}
+								
+								if (((Player) event.getWhoClicked()).getLocation().distance(orderLoc) <= 10)
 								{
 									if (OrderTracker.getOrders().get(i).isSellOrder)
 									{
