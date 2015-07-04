@@ -12,6 +12,7 @@ import nickmiste.parachutes.SteampunkParachute;
 import nickmiste.parachutes.WingParachute;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
@@ -58,5 +59,18 @@ public abstract class Parachute
 			else if (ParachuteSelector.parachutes.get(player.getUniqueId()).equals(ParachuteSelector.WINGS))
 				return new WingParachute(player, gliding);
 		return new DefaultParachute(player, gliding);
+	}
+	
+	public static int getDistanceFromGround(Player player)
+	{
+		int counter = 0;
+		
+		for (int y = player.getLocation().getBlockY(); y > 0; y--)
+		{
+			counter++;
+			if (!player.getWorld().getBlockAt(player.getLocation().getBlockX(), y, player.getLocation().getBlockZ()).getType().equals(Material.AIR))
+				break;
+		}
+		return counter;
 	}
 }
