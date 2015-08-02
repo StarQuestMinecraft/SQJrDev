@@ -30,7 +30,7 @@ public class ParachuteSelector
 	public static final String SKYDOG_PARACHUTE = ChatColor.DARK_RED + "Sky" + ChatColor.GRAY + "dog";
 	public static final String METEOR_PARACHUTE = ChatColor.RED + "" + ChatColor.BOLD + "Meteor";
 	public static final String SLIME_PARACHUTE = ChatColor.GREEN + "" + ChatColor.BOLD + "Slime Parachute";
-	public static final String WINGS = ChatColor.GOLD + "Wings";
+//	public static final String WINGS = ChatColor.GOLD + "Wings";
 	
 	private static final ArrayList<ItemStack> ITEMS = new ArrayList<ItemStack>();
 	
@@ -44,7 +44,7 @@ public class ParachuteSelector
 		addItem(Material.ANVIL, 0, IRONIC_PARACHUTE);
 		addItem(Material.BONE, 0, SKYDOG_PARACHUTE);
 		addItem(Material.SLIME_BALL, 0,  SLIME_PARACHUTE);
-		addItem(Material.SKULL_ITEM, 1, WINGS);
+//		addItem(Material.SKULL_ITEM, 1, WINGS);
 	}
 	
 	public static Inventory getSelector(Player player)

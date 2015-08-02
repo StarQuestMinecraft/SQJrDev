@@ -57,7 +57,7 @@ public final class SQParachute extends JavaPlugin implements Listener
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event)
 	{
-		if (!event.getPlayer().getWorld().getName().startsWith("Trinitos_") && Parachute.getDistanceFromGround(event.getPlayer()) >= 16)
+		if (!event.getPlayer().getWorld().getName().startsWith("Trinitos_") && Parachute.getDistanceFromGround(event.getPlayer()) >= 4)
 		{
 			if (event.getPlayer().hasPermission("sqparachute.use"))
 			{
