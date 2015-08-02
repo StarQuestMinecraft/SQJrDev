@@ -20,7 +20,6 @@ public final class SQTreeFarm extends JavaPlugin implements Listener
 	{
 		loadConfig();
 		TreeTask.validFuels = (List<Fuel>) getConfig().getList("fuels");
-		TreeTask.allowHopperFuelInput = getConfig().getBoolean("allowHopperFuelInput");
 		TreeTask.rangeIncrements = getConfig().getInt("rangeIncrements");
 		
 		Bukkit.getPluginManager().registerEvents(this, this);

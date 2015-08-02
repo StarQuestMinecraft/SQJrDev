@@ -32,7 +32,6 @@ public class TreeTask implements Runnable
 	private Player player;
 	
 	public static List<Fuel> validFuels;
-	public static boolean allowHopperFuelInput;
 	public static int rangeIncrements;
 	
 	public TreeTask(Location sign, Player player)
