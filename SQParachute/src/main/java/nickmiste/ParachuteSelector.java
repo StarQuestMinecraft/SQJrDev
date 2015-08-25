@@ -51,7 +51,7 @@ public class ParachuteSelector
 	{
 		Inventory selector = Bukkit.createInventory(player, 9, SELECTOR_NAME);
 		
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i < 7; i++)
 		{
 			if (player.hasPermission("sqparachute." + getStringWithoutFormatting(ITEMS.get(i).getItemMeta().getDisplayName())) || ITEMS.get(i).getItemMeta().getDisplayName().equals(DEFAULT_PARACHUTE))
 				selector.setItem(selector.firstEmpty(), ITEMS.get(i));

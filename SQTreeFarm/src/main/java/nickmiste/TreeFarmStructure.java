@@ -3,7 +3,7 @@ package nickmiste;
 import org.bukkit.Location;
 import org.bukkit.Material;
 
-public class Structure 
+public class TreeFarmStructure 
 {
 	public static boolean isValid(Location loc)
 	{

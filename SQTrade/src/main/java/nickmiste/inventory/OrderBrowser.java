@@ -19,7 +19,7 @@ public class OrderBrowser
 	
 	public static final String PREVIOUS_NAME = ChatColor.RED + "Previous Page";
 	public static final String NEXT_NAME = ChatColor.RED + "Next Page";
-	public static final String MY_TRADES_NAME = ChatColor.RED + "My Trades";
+	public static final String OPTIONS_NAME = ChatColor.RED + "Options";
 	public static final String DISABLED = ChatColor.RED + "This feature is disabled for custom searches";
 	
 	public static final int[] MAIN_SLOTS = {1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34};
@@ -41,7 +41,7 @@ public class OrderBrowser
 		next.setItemMeta(nextMeta);
 		
 		ItemMeta myTradesMeta = myTrades.getItemMeta();
-		myTradesMeta.setDisplayName(MY_TRADES_NAME);
+		myTradesMeta.setDisplayName(OPTIONS_NAME);
 		myTrades.setItemMeta(myTradesMeta);
 		
 		inv.setItem(0, previous);
@@ -62,7 +62,7 @@ public class OrderBrowser
 		inv.setItem(42, myTrades);
 		inv.setItem(43, myTrades);
 		inv.setItem(44, myTrades);
-		
+		inv.setItem(45, search);
 
 		if (customSearch == null)
 			customSearch = OrderTracker.getOrders();
@@ -71,18 +71,18 @@ public class OrderBrowser
 			if (!customSearch.get(i).player.equals(player.getUniqueId()))
 				inv.setItem(MAIN_SLOTS[i % MAIN_SLOTS.length], InvUtils.getDisplayStack(customSearch.get(i)));
 		
-		int numMyTrades = 0;
-		for (int i = 0; i < customSearch.size(); i++)
-		{
-			if (customSearch.get(i).player.equals(player.getUniqueId()))
-			{
-				inv.setItem(numMyTrades + 45, InvUtils.getDisplayStack(customSearch.get(i)));
-				numMyTrades++;
-			}
-			
-			if (numMyTrades == 9)
-				break;
-		}
+//		int numMyTrades = 0;
+//		for (int i = 0; i < customSearch.size(); i++)
+//		{
+//			if (customSearch.get(i).player.equals(player.getUniqueId()))
+//			{
+//				inv.setItem(numMyTrades + 45, InvUtils.getDisplayStack(customSearch.get(i)));
+//				numMyTrades++;
+//			}
+//			
+//			if (numMyTrades == 9)
+//				break;
+//		}
 		
 		return inv;
 	}

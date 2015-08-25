@@ -36,7 +36,7 @@ public class TreeTask implements Runnable
 	
 	public TreeTask(Location sign, Player player)
 	{
-		this.gold = Structure.getGoldRelativeToSign(sign);
+		this.gold = TreeFarmStructure.getGoldRelativeToSign(sign);
 		this.sign = sign;
 		
 		this.radius = checkRadius();
@@ -51,7 +51,7 @@ public class TreeTask implements Runnable
 	@Override
 	public void run() 
 	{
-		if (Structure.isValid(sign))
+		if (TreeFarmStructure.isValid(sign))
 		{
 			signBlock = (Sign) gold.getWorld().getBlockAt(sign).getState();
 		}
