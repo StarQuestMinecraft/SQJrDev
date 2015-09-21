@@ -1,0 +1,7 @@
+name: SQVote
+main: nickmiste.SQVote
+version: 1.0
+commands:
+   redeemvote:
+      description: Redeem Vote Tickets (VTs) for various rewards
+depend: [Craftconomy3,Votifier]
