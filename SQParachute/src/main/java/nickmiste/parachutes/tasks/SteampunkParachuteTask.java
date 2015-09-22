@@ -46,7 +46,6 @@ public class SteampunkParachuteTask extends ParachuteTask
 		{
 			Parachute.parachuting.remove(parachute.player);
 			Parachute.glidingPlayers.remove(parachute.player);
-			Parachute.glidingPlayers.remove(parachute.player);
 			Parachute.parachutingArmorStands.remove(armorStand1);
 			Parachute.parachutingArmorStands.remove(armorStand2);
 			armorStand1.remove();
