@@ -1,6 +1,6 @@
 name: SQSpaceItems
 main: nickmiste.SQSpaceItems
-version: 1.0
+version: 3.0
 permissions:
    sqspaceitems.clear:
       description: Allows staff to use /spaceitemsclear
@@ -8,3 +8,4 @@ permissions:
 commands:
    spaceitemsclear:
       description: Clears all Armor Stands spawned by Space Items
+depend: [ProtocolLib]

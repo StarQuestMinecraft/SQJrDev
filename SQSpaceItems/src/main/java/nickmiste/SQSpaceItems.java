@@ -3,6 +3,7 @@ package nickmiste;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -14,23 +15,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ItemSpawnEvent;
-import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SQSpaceItems extends JavaPlugin implements Listener 
 {
-	public static CopyOnWriteArrayList<ArmorStand> armorStands = new CopyOnWriteArrayList<ArmorStand>();
+	public static CopyOnWriteArrayList<Player> spectators = new CopyOnWriteArrayList<Player>();
 	
 	private static SQSpaceItems instance;
 	
 	@Override
 	public void onEnable() 
 	{
-		if (!Bukkit.getServerName().startsWith("Trinitos_"))
-		{
-			this.setEnabled(false);
-			return;
-		}
+//		if (!Bukkit.getServerName().startsWith("Trinitos_"))
+//		{
+//			this.setEnabled(false);
+//			return;
+//		}
 		instance = this;
 		Bukkit.getPluginManager().registerEvents(this, this);
 		
@@ -38,10 +38,10 @@ public final class SQSpaceItems extends JavaPlugin implements Listener
 		{
 			public void run()
 			{
-				for (ArmorStand armorStand : armorStands)
+				for (Player spectator : spectators)
 				{
-					armorStands.remove(armorStand);
-					armorStand.remove();
+					spectators.remove(spectator);
+					spectator.remove();
 				}
 			}
 		}, 6000, 6000);
@@ -50,8 +50,8 @@ public final class SQSpaceItems extends JavaPlugin implements Listener
 	@Override
 	public void onDisable()
 	{
-		for (ArmorStand armorStand : armorStands)
-			armorStand.remove();
+		for (Player spectator : spectators)
+			spectator.remove();
 	}
 	
 	@EventHandler
@@ -65,28 +65,19 @@ public final class SQSpaceItems extends JavaPlugin implements Listener
 		task.setId(id);
 	}
 	
-	@EventHandler
-	public void onPlayerInteractEntity(PlayerInteractAtEntityEvent event)
-	{
-		if (event.getRightClicked() instanceof ArmorStand)
-			if (armorStands.contains((ArmorStand) event.getRightClicked()))
-				event.setCancelled(true);
-	}
-	
 	public static void setFloating(Item item, boolean floating)
 	{
 		if (floating && item.getVehicle() == null)
 		{
-			ArmorStand mount = item.getWorld().spawn(item.getLocation().clone().subtract(0, 1.5, 0), ArmorStand.class);
-			mount.setVisible(false);
-			mount.setGravity(false);
-			mount.setSmall(true);
-			mount.setPassenger(item);
-			armorStands.add(mount);
+			Spectator.spawnSpectator(item.getLocation().getX(), item.getLocation().getY(), item.getLocation().getZ());
+			//Player mount = item.getWorld().spawn(item.getLocation().clone().subtract(0, 1.5, 0), Player.class);
+			//mount.setGameMode(GameMode.SPECTATOR);
+			//mount.setPassenger(item);
+			//spectators.add(mount);
 		}
 		else if (!floating && item.getVehicle() != null)
 		{
-			armorStands.remove((ArmorStand) item.getVehicle());
+			spectators.remove((ArmorStand) item.getVehicle());
 			item.getVehicle().remove();
 		}
 	}
@@ -100,21 +91,27 @@ public final class SQSpaceItems extends JavaPlugin implements Listener
 			{
 				if (((Player) sender).hasPermission("sqspaceitems.clear"))
 				{
-					for (ArmorStand armorStand : armorStands)
+					int counter = 0;
+					for (Player spectator : spectators)
 					{
-						armorStands.remove(armorStand);
-						armorStand.remove();
+						spectators.remove(spectator);
+						spectator.remove();
+						counter++;
 					}
+					sender.sendMessage("Removed " + counter + " space items.");
 					return true;
 				}
 			}
 			else
 			{
-				for (ArmorStand armorStand : armorStands)
+				int counter = 0;
+				for (Player spectator : spectators)
 				{
-					armorStands.remove(armorStand);
-					armorStand.remove();
+					spectators.remove(spectator);
+					spectator.remove();
+					counter++;
 				}
+				sender.sendMessage("Removed " + counter + " space items.");
 				return true;
 			}
 		}
