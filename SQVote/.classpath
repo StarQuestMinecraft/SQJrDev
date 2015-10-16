@@ -32,7 +32,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Volumes/NICKMISTE/Server 1.8/plugins/Votifier.jar"/>
-	<classpathentry kind="lib" path="/Volumes/NICKMISTE/Server 1.8/plugins/craftconomy3-3.1.6.jar"/>
+	<classpathentry kind="lib" path="D:/Starquest/depend/craftconomy3-3.1.6.jar"/>
+	<classpathentry kind="lib" path="D:/Starquest/depend/votifier-1.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
