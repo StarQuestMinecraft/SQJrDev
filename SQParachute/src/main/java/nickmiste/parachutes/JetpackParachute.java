@@ -21,7 +21,7 @@ public class JetpackParachute extends Parachute
 	{
 		super(player, gliding);
 		
-		Slime[] slimes = new Slime[3];
+		Slime[] slimes = new Slime[4];
 		for (int i = 0; i < slimes.length; i++)
 		{
 			slimes[i] = (Slime) player.getWorld().spawnEntity(loc, EntityType.SLIME);
@@ -80,13 +80,13 @@ public class JetpackParachute extends Parachute
 			armorStand.setHeadPose(new EulerAngle(90, 0, 0));
 		}
 		
-		body1.setPassenger(slimes[1]);
-		slimes[1].setPassenger(slimes[2]);
-		slimes[2].setPassenger(body2);
+		body1.setPassenger(slimes[0]);
+		slimes[0].setPassenger(slimes[1]);
+		slimes[1].setPassenger(body2);
 		
-		body3.setPassenger(slimes[3]);
-		slimes[3].setPassenger(slimes[4]);
-		slimes[4].setPassenger(body4);
+		body3.setPassenger(slimes[2]);
+		slimes[2].setPassenger(slimes[3]);
+		slimes[3].setPassenger(body4);
 		
 		JetpackParachuteTask task = new JetpackParachuteTask(this, armorStands, slimes);
 		int id = Bukkit.getScheduler().scheduleSyncRepeatingTask(SQParachute.getInstance(), task, 1, 1);

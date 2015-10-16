@@ -32,8 +32,8 @@ public class JetpackParachuteTask extends ParachuteTask
 	{
 		Vector direction = parachute.player.getLocation().getDirection();
 		parachute.player.setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
-		armorStands[0][0].teleport(parachute.player.getLocation().clone().add(0.1, parachute.player.getLocation().getY(), 0.1));
-		armorStands[0][2].teleport(parachute.player.getLocation().clone().add(-0.1, parachute.player.getLocation().getY(), 0.1));
+		armorStands[0][0].setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
+		armorStands[0][2].setVelocity(new Vector(parachute.gliding ? direction.getX() : 0, -0.3, parachute.gliding ? direction.getZ() : 0));
 		
 		if (iteration % 20 == 0)
 		{
@@ -62,6 +62,10 @@ public class JetpackParachuteTask extends ParachuteTask
 					Parachute.parachutingArmorStands.remove(armorStand);
 					armorStand.remove();
 				}
+			}
+			for (Slime slime : slimes)
+			{
+				slime.remove();
 			}
 			Bukkit.getScheduler().cancelTask(this.id);
 		}

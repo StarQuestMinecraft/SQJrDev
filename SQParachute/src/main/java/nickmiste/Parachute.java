@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import nickmiste.parachutes.DefaultParachute;
 import nickmiste.parachutes.IronicParachute;
+import nickmiste.parachutes.JetpackParachute;
 import nickmiste.parachutes.MeteorParachute;
 import nickmiste.parachutes.RainbowParachute;
 import nickmiste.parachutes.SkydogParachute;
@@ -55,6 +56,8 @@ public abstract class Parachute
 				return new MeteorParachute(player, gliding);
 			else if (ParachuteSelector.parachutes.get(player.getUniqueId()).equals(ParachuteSelector.SLIME_PARACHUTE))
 				return new SlimeParachute(player, gliding);
+			else if (ParachuteSelector.parachutes.get(player.getUniqueId()).equals(ParachuteSelector.JETPACK_PARACHUTE))
+				return new JetpackParachute(player, gliding);
 //			else if (ParachuteSelector.parachutes.get(player.getUniqueId()).equals(ParachuteSelector.WINGS))
 //				return new WingParachute(player, gliding);
 		return new DefaultParachute(player, gliding);
