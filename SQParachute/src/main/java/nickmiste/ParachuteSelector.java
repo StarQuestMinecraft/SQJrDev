@@ -37,7 +37,7 @@ public class ParachuteSelector
 	
 	static
 	{
-		CONTRABAND.add(ChatColor.RED + "Contraband");
+		CONTRABAND.add(ChatColor.RED + "" + ChatColor.MAGIC + "Contraband");
 		addItem(Material.FEATHER, 0, DEFAULT_PARACHUTE);
 		addItem(Material.GOLD_INGOT, 0, RAINBOW_PARACHUTE);
 		addItem(Material.NETHERRACK, 0, METEOR_PARACHUTE);

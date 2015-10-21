@@ -22,8 +22,8 @@ public class Checkout
 		System.out.println(player);
 		System.out.println(SQVote.cc3);
 		
-		if (cart.containsKey(player))
-		{
+//		if (cart.containsKey(player))
+//		{
 			if (SQVote.cc3.getAccountManager().getAccount(player.getName()).hasEnough(amount, player.getWorld().getName(), "VT"))
 			{
 				SQVote.cc3.getAccountManager().getAccount(player.getName()).withdraw(amount, player.getWorld().getName(), "VT");
@@ -46,9 +46,9 @@ public class Checkout
 			}
 			else
 				player.sendMessage(ChatColor.DARK_RED + "You do not have enough VT for that! Earn VT by voting for the server!");
-		}
-		else
-			player.sendMessage(ChatColor.DARK_RED + "Add something to your cart before pressing Checkout!");
+//		}
+//		else
+//			player.sendMessage(ChatColor.DARK_RED + "Add something to your cart before pressing Checkout!");
 	}
 	
 	private static boolean hasRoom(Inventory inv, ItemStack[] items)
