@@ -27,8 +27,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/StarQuest/depend/craftconomy3-3.1.6.jar"/>
-	<classpathentry kind="lib" path="D:/StarQuest/depend/SQBungeeMovecraft.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/Starquest/depend/craftconomy3-3.1.6.jar"/>
+	<classpathentry kind="lib" path="D:/Starquest/depend/SQBungeeMovecraft.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
