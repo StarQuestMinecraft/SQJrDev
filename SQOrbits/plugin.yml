@@ -1,0 +1,20 @@
+name: ${project.name}
+version: ${project.version}
+main: com.whirlwindgames.sqorbits.SQOrbits
+depend: [WorldEdit, WorldGuard]
+softdepend: [Dynmap]
+loadbefore: [Movecraft]
+load: POSTWORLD
+author: lawrencethefrog
+description: A plugin that causes the planets in StarQuest's space worlds to move round in their orbits slightly on server restarts.
+commands:
+   moveplanet:
+     description: Moves the specified planet as if a restart had occurred.
+     usage: moveplanet <planet name>
+     permission: ${project.name}.moveplanet
+     permission-message: "You're not strong enough to move the world! Try finding a lever and somewhere to stand."
+   moveplanets:
+     description: Moves all the planets as if a restart had occurred.
+     usage: moveplanets
+     permission: ${project.name}.moveplanets
+     permission-message: "You need more blue to be able to move worlds!"
