@@ -2,6 +2,7 @@ package com.whirlwindgames.sqorbits;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -18,20 +19,19 @@ import org.dynmap.markers.Marker;
 import org.dynmap.markers.MarkerAPI;
 import org.dynmap.markers.MarkerSet;
 
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import com.sk89q.worldguard.protection.managers.RegionManager;
-import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
-import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldedit.BlockVector;
 import com.sk89q.worldedit.CuboidClipboard;
 import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.MaxChangedBlocksException;
+import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.data.DataException;
 import com.sk89q.worldedit.regions.CuboidRegion;
 import com.sk89q.worldedit.schematic.MCEditSchematicFormat;
-//FIXME: rotation value saving system
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 public class SQOrbits extends JavaPlugin{
 	private static final double radiansPerDegree = Math.PI/180;
 	private FileConfiguration config;
@@ -40,10 +40,10 @@ public class SQOrbits extends JavaPlugin{
 	private WorldGuardPlugin wg;
 	private MarkerAPI markerAPI;
 	private boolean dynmapOK;
+	private YamlConfiguration planetRotationConfig;
 	
 	public void onEnable(){		
-		updateConfigStuff();
-				
+		updateConfigStuff();				
 		Plugin wg = getServer().getPluginManager().getPlugin("WorldGuard");
 		if (wg == null || !(wg instanceof WorldGuardPlugin)) {
 			print("WorldGuard is not properly installed! This plugin cannot run.");
@@ -65,10 +65,9 @@ public class SQOrbits extends JavaPlugin{
 			print("Missing dynmap API!");
 			dynmapOK=false;
 		}
-		
-				
+						
 		tryMovePlanets();
-		saveConfig();
+		savePlanetRotations();
 		
 		getCommand("moveplanet").setExecutor(new MovePlanetExecutor(this));
 		getCommand("moveplanets").setExecutor(new MovePlanetsExecutor(this));
@@ -79,11 +78,37 @@ public class SQOrbits extends JavaPlugin{
 		config = getConfig();
 		configPlanets = config.getConfigurationSection("Planets");
 		planetNames = configPlanets.getKeys(false);
+		String path = config.getString("RotationStoreFile");
+		if(path==null){
+			print("The configuration field '"+path+"' was not a valid YAML configuration component of type 'String'. Expect errors.");
+		}
+		File planetRotationFile = new File(path);
+		if(!planetRotationFile.exists()){
+			print("Planet rotations save file does not exist at path '"+path+"'. Creating one...");
+			planetRotationConfig = new YamlConfiguration();
+			for(String name:planetNames){
+				planetRotationConfig.set(name, 0.0);
+			}
+			savePlanetRotations();
+		} else {
+			planetRotationConfig = YamlConfiguration.loadConfiguration(planetRotationFile);
+		}		
 	}
 	
 	public void tryMovePlanets(){					
 		for (String name : planetNames){
 			tryMovePlanet(name);
+		}
+	}	
+	
+	public void savePlanetRotations(){
+		String path = config.getString("RotationStoreFile");
+		File planetRotationFile = new File(path);
+		try {
+			planetRotationConfig.save(planetRotationFile);
+		} catch (IOException e) {
+			print("An error occurred saving the planet rotation file at path '"+path+"'.");
+			e.printStackTrace();
 		}
 	}
 	
@@ -96,9 +121,9 @@ public class SQOrbits extends JavaPlugin{
 				print("There is no world with the name '"+worldName+"'. The planet '"+name+"' will not be moved.");
 				return;
 			}
-			double oldPlanetAngle = planetConfig.getDouble("CurrentAngle");
+			double oldPlanetAngle = planetRotationConfig.getDouble(name);
 			double planetAngle = (oldPlanetAngle+planetConfig.getDouble("Speed"))%360;
-			config.set("Planets."+name+".CurrentAngle", planetAngle);			
+			planetRotationConfig.set(name, planetAngle);
 			double sin = Math.sin(planetAngle*radiansPerDegree);
 			double cos = Math.cos(planetAngle*radiansPerDegree);
 			double dist = planetConfig.getDouble("BlocksFromSun");
@@ -199,10 +224,6 @@ public class SQOrbits extends JavaPlugin{
 		}
 		if(!planetConfig.isDouble("BlocksFromSun")){
 			printPlanetConfigError("BlocksFromSun", name, "Double");
-			return false;
-		}
-		if(!planetConfig.isDouble("CurrentAngle")){
-			printPlanetConfigError("CurrentAngle", name, "Double");
 			return false;
 		}
 		if(!planetConfig.isString("SchematicPath")){

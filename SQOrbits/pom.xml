@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>SQOrbits</groupId>
   <artifactId>sqorbits</artifactId>
-  <version>1.2-DEBUG-1</version>
+  <version>1.3</version>
   <name>SQOrbits</name>
    <repositories>
      <repository>

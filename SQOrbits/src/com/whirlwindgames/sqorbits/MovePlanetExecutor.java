@@ -22,7 +22,7 @@ public class MovePlanetExecutor implements CommandExecutor {
 				+ "Note: The movecraft planet location may not be updated until the server restarts.");
 		main.updateConfigStuff();
 		main.tryMovePlanet(args[0]);
-		main.saveConfig();
+		main.savePlanetRotations();
 		return true;
 	}
 }
