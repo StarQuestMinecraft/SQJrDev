@@ -89,7 +89,7 @@ public class TreeTask implements Runnable
 								if (gold.getWorld().getBlockAt(x, y, z).getType().equals(Material.LOG) ||
 									gold.getWorld().getBlockAt(x, y, z).getType().equals(Material.LOG_2))
 								{
-									BlockBreakEvent event = new BlockBreakEvent(gold.getWorld().getBlockAt(x, y, z), player);
+									EntityChangeBlockEvent event = new EntityChangeBlockEvent(null, gold.getWorld().getBlockAt(x, y, z), null);
 									Bukkit.getServer().getPluginManager().callEvent(event);
 									
 									if (!event.isCancelled())
